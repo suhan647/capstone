@@ -1,0 +1,7 @@
+Creating an e-commerce website where users can buy and sell their products with minimum interactions is an exciting project.
+ The key to a successful e-commerce website is to provide a simple and intuitive user interface that makes it easy for users to navigate the
+  site and find what they're looking for. The website should also have a secure payment gateway that allows users to make transactions with
+   confidence. To ensure that users have a smooth and hassle-free experience, it's important to incorporate features such as an easy-to-use
+    shopping cart, a search function that allows users to find products quickly, and a rating and review system that helps build trust between
+     buyers and sellers. By paying attention to these key elements, we can create an e-commerce website that meets the needs of both
+      buyers and sellers and helps them connect with each other in a simple and efficient way.
