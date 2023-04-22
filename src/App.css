@@ -1,0 +1,36 @@
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link_container :hover {
+  color: red;
+  /* text-decoration: underline; */
+}
+.link_container {
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 650px) and (max-width: 1024px) {
+  .navflex {
+    display: none;
+  }
+}
+/* .searchbar {
+  display: none;
+} */
+.textbox {
+  width: 100%;
+  line-height: 2em;
+  border: none;
+  background-color: #f0f0f5;
+}
+.icons {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.link_container :hover {
+  color: red;
+  /* text-decoration: underline; */
+}
