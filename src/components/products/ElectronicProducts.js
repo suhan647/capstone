@@ -2,7 +2,7 @@ import React from 'react'
 
 function ElectronicProducts() {
   return (
-    <div>ElectronicProducts</div>
+    <div style={{marginTop:"60px"}}>ElectronicProducts</div>
   )
 }
 
