@@ -2,7 +2,7 @@ import React from 'react'
 
 function ProductsSetails() {
   return (
-    <div>ProductsSetails</div>
+    <div style={{marginTop:"60px"}}>ProductsSetails</div>
   )
 }
 
