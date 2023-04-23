@@ -26,7 +26,7 @@ import  menssale  from '../images/carousal-images/menssale.png'
         </div>
         <div className='image'>
             <img alt="" src={hot}  />
-        </div>
+        </div>  
        
         <div className='image'>
             <img alt="" src={ramzan}  />
