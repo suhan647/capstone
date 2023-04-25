@@ -95,6 +95,60 @@
   display: flex;
 }
 
+.carousel {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.carousel .slide {
+  height: 70vh;
+}
+/* carousal_container */
+@media (min-width: 320px) and (max-width: 488px) {
+  .carousal_container {
+    margin-top: 16%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+  .carousel .slide {
+    height: 50vh;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 488px) {
+  .carousel .slide {
+    height: 30vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .carousel .slide {
+    height: 30vh;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .carousal_container {
+    margin-top: 10%;
+  }
+}
+.carousel .slide img {
+  max-height: 100%;
+  width: 100%;
+}
+
+.image {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+
+.afterlogo {
+  display: flex;
+}
+
 .loader {
   width: 48px;
   height: 48px;
