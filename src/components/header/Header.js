@@ -83,22 +83,16 @@ function Header(props) {
           </NavLink>
         </ListItem>
         <ListItem onClick={Mens}>
-          {/* <NavLink to="/mensproducts" className="link link_container"> */}
             Men
-          {/* </NavLink> */}
         </ListItem>
         <ListItem onClick={Womens}>
-          {/* <NavLink to="/womensproducts" className="link link_container"> */}
             Women
-          {/* </NavLink> */}
         </ListItem>
         <ListItem onClick={Electronics}>
-          {/* <NavLink to="/electronicproducts" className="link link_container"> */}
             Electronics
             <sup style={{ color: "red", fontSize: "10px" }}>
               <b>New</b>
             </sup>
-          {/* </NavLink> */}
         </ListItem>
       </List>
     </Box>
@@ -155,28 +149,22 @@ function Header(props) {
 
               <Grid item xs={1}>
                 <Box className="link_container , dis" onClick={Mens}>
-                  {/* <NavLink to="/mensproducts" className="link"> */}
                     Men
-                  {/* </NavLink> */}
                 </Box>
               </Grid>
 
               <Grid item xs={2}>
                 <Box className="link_container , dis" onClick={Womens}>
-                  {/* <NavLink to="/womensproducts" className="link"> */}
                     Women
-                  {/* </NavLink> */}
                 </Box>
               </Grid>
 
               <Grid item xs={3}>
                 <Box className="link_container , dis" onClick={Electronics}>
-                  {/* <NavLink to="/electronicproducts" className="link"> */}
                     Electronics
                     <sup style={{ color: "red", fontSize: "10px" }}>
                       <b>New</b>
                     </sup>
-                  {/* </NavLink> */}
                 </Box>
               </Grid>
 
@@ -267,7 +255,7 @@ function Header(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: "block", sm: "none" },

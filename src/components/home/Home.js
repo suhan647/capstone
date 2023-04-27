@@ -2,10 +2,9 @@ import { Avatar, Button, Grid, Stack } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import Carousal from '../carousal/Carousal'
-import axios from 'axios'
 import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch, useSelector } from 'react-redux'
-import { productItems } from '../../redux/slices/ProductSlice'
+import { productItems, reusability } from '../../redux/slices/ProductSlice'
 import { addItem } from '../../redux/slices/CartSlice'
 import { Link, } from 'react-router-dom'
 import Loader from '../loaders/Loader'
@@ -52,6 +51,9 @@ function Home() {
        dispatch(addToWishList(items))      
   }
 
+  const Phones = () => {
+    dispatch(reusability("smartphones"))
+  }
 
   return (
     <>
@@ -63,7 +65,7 @@ function Home() {
    <Stack className='scroll' direction="row" spacing={10} sx={{marginX:'5px',mt:'20px',overflowX:'scroll', whiteSpace:'nowrap',padding:'20px',overflowY:'none',border:'2px solid grey',borderRadius:"30px 10px",backgroundColor:"yellow" }}>
     
    <Tooltip title="Phones">
-      <Avatar className='hoverzoom'  alt="phones" src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      <Avatar className='hoverzoom' onClick={Phones}  alt="phones" src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
       </Tooltip>
 
       <Tooltip title="Laptops">
@@ -86,7 +88,7 @@ function Home() {
     </Box>
    
 <Box sx={{display:'flex',justifyContent:'center',mt:'5px'}}>
-  <h2>All Products</h2>
+  <h2>{category ? `${category}` :"All Products"}</h2>
 </Box>
 {loading ? <Loader /> : 
 <Box sx={{display:'flex', justifyContent:'center'}}>
