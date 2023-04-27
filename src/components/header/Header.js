@@ -38,20 +38,25 @@ function Header(props) {
   const dispatch = useDispatch()
 
   const navigate=useNavigate()
+
   const Mens = () => {
    dispatch(reusability("mens-shirts"))
+   navigate('/')
   }
 
   const Womens = () => {
     dispatch(reusability("womens-dresses"))
+    navigate('/')
    }
 
    const Electronics = () => {
     dispatch(reusability("laptops"))
+    navigate('/')
    }
 
    const Home = () => {
     dispatch(reusability())
+    
    }
 
   const { window } = props;
@@ -68,7 +73,7 @@ function Header(props) {
       </Typography>
       <Divider />
       <List>
-        <ListItem>
+        <ListItem  onClick={Home}>
           <NavLink
             to="/"
             className="link link_container"
@@ -77,17 +82,17 @@ function Header(props) {
             Home
           </NavLink>
         </ListItem>
-        <ListItem>
+        <ListItem onClick={Mens}>
           {/* <NavLink to="/mensproducts" className="link link_container"> */}
             Men
           {/* </NavLink> */}
         </ListItem>
-        <ListItem>
+        <ListItem onClick={Womens}>
           {/* <NavLink to="/womensproducts" className="link link_container"> */}
             Women
           {/* </NavLink> */}
         </ListItem>
-        <ListItem>
+        <ListItem onClick={Electronics}>
           {/* <NavLink to="/electronicproducts" className="link link_container"> */}
             Electronics
             <sup style={{ color: "red", fontSize: "10px" }}>

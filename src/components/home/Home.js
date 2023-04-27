@@ -31,9 +31,6 @@ function Home() {
         setLoading(true)
         let data = category ? await apiService.get(`/products/category/${category}`) : await apiService.get('/products')
         setProducts(data.data.products)
-
-        // let data = await apiService.get('/c')
-      // setProducts(data.data.products)
      dispatch(productItems(data))
      setLoading(false)
       } catch (error) {
