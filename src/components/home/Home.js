@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 import Loader from '../loaders/Loader'
 import { addToWishList } from '../../redux/slices/WishlistSlice'
 import { useNavigate } from 'react-router-dom'
+import apiService from '../../services/apiService'
 
 function Home() {
 
@@ -27,7 +28,7 @@ function Home() {
     async function getData(){
       try {
         setLoading(true)
-        let data=await axios.get('https://dummyjson.com/products/')
+        let data = await apiService.get('/products')
       setProducts(data.data.products)
      dispatch(productItems(data))
      setLoading(false)

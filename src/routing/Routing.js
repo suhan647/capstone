@@ -5,6 +5,7 @@ import ElectronicProducts from '../components/products/ElectronicProducts'
 import MensProducts from '../components/products/MensProducts'
 import ProductDetails from '../components/products/ProductDetails'
 import WomensProducts from '../components/products/WomensProducts'
+import Cart from '../components/cart/Cart'
 
 
 function Routing() {
@@ -17,6 +18,7 @@ function Routing() {
         <Route path="/womensproducts" element={<WomensProducts />}></Route>
         <Route path="/electronicproducts" element={<ElectronicProducts />}></Route>
         <Route path='/productdetails/:id' element={<ProductDetails/>} ></Route>
+        <Route path="/cart" element={<Cart />}></Route>
         
     </Routes>
     
