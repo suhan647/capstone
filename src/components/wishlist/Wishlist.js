@@ -3,22 +3,26 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, Button, Card, CardContent, Grid } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { removeFromWishList } from '../../redux/slices/WishlistSlice';
+import { addToCart } from '../../redux/slices/CartSlice';
 
 function WishList() {
   const data = useSelector((state) => state.wishListSlice.list);
 
-  console.log(data);
+  const dispatch = useDispatch()
 
-const dispatch = useDispatch()
+  const removeWishListHandler = (item) => {
+    dispatch(removeFromWishList(item.id))
+  }
 
-  const removeWishListHandler = (item) =>{
-      dispatch(removeFromWishList(item.id))
+  const moveItemToCart = (item) => {
+    dispatch(addToCart(item))
+    dispatch(removeFromWishList(item.id))
   }
 
   return (
     <>
-      <Grid container spacing={2} sx={{ marginTop: '100px',width: "100%", display: 'flex', justifyContent: 'center' }}>
-        {data.length !== 0 ?data.map((item) => {
+      <Grid container spacing={2} sx={{ marginTop: '100px', width: "100%", display: 'flex', justifyContent: 'center' }}>
+        {data.length !== 0 ? data.map((item) => {
           return (
             <Grid xs={12} sm={6} md={4} lg={4} sx={{ width: "100%", marginTop: '20px' }} item key={item.id}>
               <Card sx={{ width: "100%", marginTop: '10px', ml: '30px' }}>
@@ -46,14 +50,16 @@ const dispatch = useDispatch()
                     </b>
                   </Box>
 
-                  <Box sx={{ display: 'flex', justifyContent: 'right', mt: '20px' }}>
-                    <Button sx={{ display: 'flex', justifyContent: 'right', mr: '20px', backgroundColor: 'red' }} variant="contained" size="small" onClick={() => {removeWishListHandler(item)}}>remove</Button>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '20px' }}>
+                    <Button sx={{ backgroundColor: 'red' }} variant="contained" size="small" onClick={() => { removeWishListHandler(item) }}>Remove</Button>
+
+                    <Button sx={{ backgroundColor: 'green', ml: 'auto' }} variant="contained" size="small" onClick={() => { moveItemToCart(item) }}>Move to Cart</Button>
                   </Box>
                 </CardContent>
               </Card>
             </Grid>
           )
-        }) : <h1 style={{marginTop:'100px'}}>No items in Wishlist</h1>}
+        }) : <h1 style={{ marginTop: '100px' }}>No items in Wishlist</h1>}
       </Grid>
     </>
   )
