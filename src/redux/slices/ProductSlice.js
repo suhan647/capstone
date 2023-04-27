@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  products:[]
+  products:[],
+  reuse : ''
 }
 
 export const productSlice = createSlice({
@@ -10,11 +11,14 @@ export const productSlice = createSlice({
   reducers: {
     productItems(state, action) {
         state.products=action.payload
+    },
+    reusability(state, action) {
+      state.reuse = action.payload
     }
   },
 })
 
 
-export const { productItems } = productSlice.actions
+export const { productItems, reusability } = productSlice.actions
 
 export default productSlice.reducer

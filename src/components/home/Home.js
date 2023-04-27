@@ -7,7 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch, useSelector } from 'react-redux'
 import { productItems } from '../../redux/slices/ProductSlice'
 import { addItem } from '../../redux/slices/CartSlice'
-import { Link } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
 import Loader from '../loaders/Loader'
 import { addToWishList } from '../../redux/slices/WishlistSlice'
 import { useNavigate } from 'react-router-dom'
@@ -20,16 +20,20 @@ function Home() {
 
   const dispatch = useDispatch()
 
-  const navigate = useNavigate()
+  const category = useSelector((state) => state.productsList.reuse)
 
+  console.log(category);
 
   useEffect(() => {
 
     async function getData(){
       try {
         setLoading(true)
-        let data = await apiService.get('/products')
-      setProducts(data.data.products)
+        let data = category ? await apiService.get(`/products/category/${category}`) : await apiService.get('/products')
+        setProducts(data.data.products)
+
+        // let data = await apiService.get('/c')
+      // setProducts(data.data.products)
      dispatch(productItems(data))
      setLoading(false)
       } catch (error) {
@@ -38,10 +42,8 @@ function Home() {
         setLoading(false)
       }
     }
- 
     getData()
-
-  },[])
+  },[category])
 
 
   const HandleAddToCart = (items) =>{

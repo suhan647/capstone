@@ -7,6 +7,7 @@ import '../../App.css'
 import StarIcon from '@mui/icons-material/Star';
 import { Button } from '@mui/material'
 import { addItem } from '../../redux/slices/CartSlice'
+import apiService from '../../services/apiService'
 
 function ProductDetails() {
 
@@ -16,15 +17,13 @@ function ProductDetails() {
     const [multiImage, setMultiImage] = useState([])
 
     const {id} = useParams()
-    // const products = useSelector((state) => state.productsList.products)
-    const dispatch = useDispatch()
 
-    // let single = products.data.products.find((product) =>product.id === id)
-    // console.log('single',single);
+    const dispatch = useDispatch()
 
     async function productData(id) {
         try {
-            let data = await axios.get(`https://dummyjson.com/products/${id}`)
+            // let data = await axios.get(`https://dummyjson.com/products/${id}`)
+           let data = await apiService.get(`/products/${id}`)
         console.log(data.data);
         setSingleData(data.data)
         setImages(data.data.images[0])
@@ -49,7 +48,7 @@ const HandleAddToCart = (singleData) => {
     <Box className='container' sx={{ marginTop: '8%',fontFamily:'sans-serif' }}>
 
 <Box className='main' sx={{display:'flex',marginLeft:'20px',}}>
-    <Box className='multiimage' sx={{}} >
+    <Box className='multiimage'>
 {multiImage.map((img) => {
     return <div >
         <img style={ img === images ? {border:'5px solid red',height:'90px'} : {} } onClick={()=> {setImages(img)}} src={img} alt='pro-img' height={70} width={100} />
