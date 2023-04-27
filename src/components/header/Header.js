@@ -10,7 +10,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import shoplogo from "../images/shoplogo.png";
-
 import "../../App.css";
 import { Grid } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,8 +17,9 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { reusability } from "../../redux/slices/ProductSlice";
 
 const drawerWidth = 240;
 
@@ -35,8 +35,24 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
+  const dispatch = useDispatch()
 
-  // console.log('cartcount', cartCount.length);
+  const navigate=useNavigate()
+  const Mens = () => {
+   dispatch(reusability("mens-shirts"))
+  }
+
+  const Womens = () => {
+    dispatch(reusability("womens-dresses"))
+   }
+
+   const Electronics = () => {
+    dispatch(reusability("laptops"))
+   }
+
+   const Home = () => {
+    dispatch(reusability())
+   }
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -62,22 +78,22 @@ function Header(props) {
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="/mensproducts" className="link link_container">
+          {/* <NavLink to="/mensproducts" className="link link_container"> */}
             Men
-          </NavLink>
+          {/* </NavLink> */}
         </ListItem>
         <ListItem>
-          <NavLink to="/womensproducts" className="link link_container">
+          {/* <NavLink to="/womensproducts" className="link link_container"> */}
             Women
-          </NavLink>
+          {/* </NavLink> */}
         </ListItem>
         <ListItem>
-          <NavLink to="/electronicproducts" className="link link_container">
+          {/* <NavLink to="/electronicproducts" className="link link_container"> */}
             Electronics
             <sup style={{ color: "red", fontSize: "10px" }}>
               <b>New</b>
             </sup>
-          </NavLink>
+          {/* </NavLink> */}
         </ListItem>
       </List>
     </Box>
@@ -88,7 +104,7 @@ function Header(props) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline /> */}
+ 
       <AppBar
         component="nav"
         sx={{
@@ -125,7 +141,7 @@ function Header(props) {
               </Grid>
 
               <Grid item xs={1} sx={{ marginLeft: "10px" }}>
-                <Box className="link_container , dis">
+                <Box className="link_container , dis" onClick={Home}>
                   <NavLink to="/" className="link" activeClassName="active">
                     Home
                   </NavLink>
@@ -133,29 +149,29 @@ function Header(props) {
               </Grid>
 
               <Grid item xs={1}>
-                <Box className="link_container , dis">
-                  <NavLink to="/mensproducts" className="link">
+                <Box className="link_container , dis" onClick={Mens}>
+                  {/* <NavLink to="/mensproducts" className="link"> */}
                     Men
-                  </NavLink>
+                  {/* </NavLink> */}
                 </Box>
               </Grid>
 
               <Grid item xs={2}>
-                <Box className="link_container , dis">
-                  <NavLink to="/womensproducts" className="link">
+                <Box className="link_container , dis" onClick={Womens}>
+                  {/* <NavLink to="/womensproducts" className="link"> */}
                     Women
-                  </NavLink>
+                  {/* </NavLink> */}
                 </Box>
               </Grid>
 
               <Grid item xs={3}>
-                <Box className="link_container , dis">
-                  <NavLink to="/electronicproducts" className="link">
+                <Box className="link_container , dis" onClick={Electronics}>
+                  {/* <NavLink to="/electronicproducts" className="link"> */}
                     Electronics
                     <sup style={{ color: "red", fontSize: "10px" }}>
                       <b>New</b>
                     </sup>
-                  </NavLink>
+                  {/* </NavLink> */}
                 </Box>
               </Grid>
 
