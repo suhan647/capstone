@@ -7,7 +7,6 @@ import ProductDetails from '../components/products/ProductDetails'
 import WomensProducts from '../components/products/WomensProducts'
 import Cart from '../components/cart/Cart'
 
-
 function Routing() {
   return (
     <>
@@ -21,7 +20,6 @@ function Routing() {
         <Route path="/cart" element={<Cart />}></Route>
         
     </Routes>
-    
     </>
   )
 }
