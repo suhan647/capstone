@@ -13,9 +13,9 @@ function Routing() {
     <Routes>
     
         <Route path="/" element={<Home />}></Route>
-        <Route path="/mensproducts" element={<MensProducts />}></Route>
-        <Route path="/womensproducts" element={<WomensProducts />}></Route>
-        <Route path="/electronicproducts" element={<ElectronicProducts />}></Route>
+        {/* <Route path="/mensproducts" element={<MensProducts />}></Route> */}
+        {/* <Route path="/womensproducts" element={<WomensProducts />}></Route> */}
+        {/* <Route path="/electronicproducts" element={<ElectronicProducts />}></Route> */}
         <Route path='/productdetails/:id' element={<ProductDetails/>} ></Route>
         <Route path="/cart" element={<Cart />}></Route>
         
