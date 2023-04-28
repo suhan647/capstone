@@ -7,18 +7,14 @@ import { resetCart } from '../redux/slices/CartSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = (props) => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleToken = (token) => {
     console.log(token);
-    setOpen(true);
+    // setOpen(true);
     dispatch(resetCart()); 
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -36,12 +32,7 @@ const Checkout = (props) => {
         <Button variant='contained' sx={{backgroundColor:'#ff1b6b'}}>Checkout</Button>
       </StripeCheckout>
 
-      {open && (
-        <Alert severity="success" onClose={handleClose}>
-          Payment successful!
-        </Alert>
-      )}
-    </>
+    </> 
   );
 };
 

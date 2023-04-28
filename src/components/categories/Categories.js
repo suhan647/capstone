@@ -1,55 +1,56 @@
 import { Avatar, Button, Grid, Stack } from '@mui/material'
 import { Box } from '@mui/system'
-// import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousal from '../carousal/Carousal'
 import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch, useSelector } from 'react-redux'
 import { productItems, reusability } from '../../redux/slices/ProductSlice'
-// import { addItem } from '../../redux/slices/CartSlice'
-// import { Link, } from 'react-router-dom'
-// import Loader from '../loaders/Loader'
-// import { addToWishList } from '../../redux/slices/WishlistSlice'
-// import { useNavigate } from 'react-router-dom'
-// import apiService from '../../services/apiService'
+import { addItem } from '../../redux/slices/CartSlice'
+import { Link, } from 'react-router-dom'
+import Loader from '../loaders/Loader'
+import { addToWishList } from '../../redux/slices/WishlistSlice'
+import { useNavigate } from 'react-router-dom'
+import apiService from '../../services/apiService'
 
-function Home() {
+function Categories() {
 
-  // const [products,setProducts] = useState([])
-  // const [loading, setLoading] = useState(false)
+  const [products,setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()
 
-  // const category = useSelector((state) => state.productsList.reuse)
+  const category = useSelector((state) => state.productsList.reuse)
 
-  // console.log(category);
+  console.log(category);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   async function getData(){
-  //     try {
-  //       setLoading(true)
-  //       let data = category ? await apiService.get(`/products/category/${category}`) : await apiService.get('/products')
-  //       setProducts(data.data.products)
-  //    dispatch(productItems(data))
-  //    setLoading(false)
-  //     } catch (error) {
-  //       setLoading(true)
-  //       console.log(error);
-  //       setLoading(false)
-  //     }
-  //   }
-  //   getData()
-  // },[category])
+    async function getData(){
+      try {
+      
+        setLoading(true)
+        let data = category ? await apiService.get(`/products/category/${category}`) : await apiService.get('/products')
+        setProducts(data.data.products)
+     dispatch(productItems(data))
+     setLoading(false)
+      } catch (error) {
+        setLoading(true)
+        console.log(error);
+        setLoading(false)
+      }
+    }
+    getData()
+  },[category])
 
 
-  // const HandleAddToCart = (items) =>{
-  //  dispatch(addItem(items))
-  //  console.log(items);
-  // }
+  const HandleAddToCart = (items) =>{
+   dispatch(addItem(items))
+   console.log(items);
+  }
  
-  // const HandleWishList = (items) => {
-  //      dispatch(addToWishList(items))      
-  // }
+  const HandleWishList = (items) => {
+       dispatch(addToWishList(items))      
+  }
 
   const Phones = () => {
     dispatch(reusability("smartphones"))
@@ -87,7 +88,7 @@ function Home() {
     </Stack>
     </Box>
    
-{/* <Box sx={{display:'flex',justifyContent:'center',mt:'5px'}}>
+<Box sx={{display:'flex',justifyContent:'center',mt:'5px'}}>
   <h2>{category ? `${category}` :"All Products"}</h2>
 </Box>
 {loading ? <Loader /> : 
@@ -133,10 +134,10 @@ return(
   </Grid>
 </Box>
 </Box>
-} */}
+}
 </>
    
   )
 }
 
-export default Home
+export default Categories

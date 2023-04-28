@@ -56,7 +56,6 @@ function Header(props) {
 
    const Home = () => {
     dispatch(reusability())
-    
    }
 
   const { window } = props;
@@ -83,13 +82,31 @@ function Header(props) {
           </NavLink>
         </ListItem>
         <ListItem onClick={Mens}>
+        <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
             Men
+            </NavLink>
         </ListItem>
         <ListItem onClick={Womens}>
+        <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
             Women
+            </NavLink>
         </ListItem>
         <ListItem onClick={Electronics}>
+        <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
             Electronics
+            </NavLink>
             <sup style={{ color: "red", fontSize: "10px" }}>
               <b>New</b>
             </sup>
@@ -149,19 +166,36 @@ function Header(props) {
 
               <Grid item xs={1}>
                 <Box className="link_container , dis" onClick={Mens}>
+                <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action">
                     Men
+                    </NavLink>
                 </Box>
               </Grid>
 
               <Grid item xs={2}>
                 <Box className="link_container , dis" onClick={Womens}>
+                <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
                     Women
+                    </NavLink>
                 </Box>
               </Grid>
 
               <Grid item xs={3}>
                 <Box className="link_container , dis" onClick={Electronics}>
+                <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
                     Electronics
+                    </NavLink>
                     <sup style={{ color: "red", fontSize: "10px" }}>
                       <b>New</b>
                     </sup>

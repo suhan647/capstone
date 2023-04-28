@@ -4,6 +4,7 @@ import Home from '../components/home/Home'
 import ProductDetails from '../components/products/ProductDetails'
 import WishList from '../components/wishlist/Wishlist.js'
 import Cart from '../components/cart/Cart'
+import Categories from '../components/categories/Categories'
 
 function Routing() {
   return (
@@ -14,6 +15,7 @@ function Routing() {
         <Route path="/wishlist" element={<WishList />}></Route>
         <Route path="/productdetails/:id" element={<ProductDetails/>} ></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/categories" element={<Categories />}></Route>
         
     </Routes>
     </>
