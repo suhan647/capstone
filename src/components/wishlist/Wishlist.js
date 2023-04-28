@@ -21,46 +21,66 @@ function WishList() {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ marginTop: '100px', width: "100%", display: 'flex', justifyContent: 'center' }}>
-        {data.length !== 0 ? data.map((item) => {
-          return (
-            <Grid xs={12} sm={6} md={4} lg={4} sx={{ width: "100%", marginTop: '20px' }} item key={item.id}>
-              <Card sx={{ width: "100%", marginTop: '10px', ml: '30px' }}>
-                <Box sx={{ display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
-                  <img src={item.thumbnail} alt='dummy' height='200px' />
+       <Grid container spacing={2} sx={{ marginTop: '100px' }}>
+      {data.length !== 0 ? (
+        data.map((item) => (
+          <Grid key={item.id} item xs={12} sm={6} md={4} sx={{ marginTop: '20px' }}>
+            <Card sx={{ height: '100%' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2 }}>
+                <img src={item.thumbnail} alt='dummy' height='200px' />
+              </Box>
+              <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                  <b>{item.title}</b>
                 </Box>
-
-                <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: '10px' }}>
-                    <b>{item.title}</b>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                  <b>
+                    <small>{item.description}</small>
+                  </b>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <StarIcon sx={{ color: 'yellowgreen', mr: 1 }} fontSize='small' />
+                    <b style={{ fontSize: '14px' }}>{item.rating}</b>
                   </Box>
-
-                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: '10px' }}>
-                    <b><small>{item.description}</small></b>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <b style={{ fontSize: '14px' }}>${item.price}/-</b>
                   </Box>
-
-                  <Box sx={{ display: 'flex', justifyContent: 'space-evenly', mt: '10px' }}>
-                    <b style={{ display: 'flex', alignItems: 'center' }}>
-                      <small style={{ padding: "5px" }}>Ratings: </small>{item.rating}
-                      <span style={{ color: 'yellowgreen', padding: '10px' }}> <StarIcon fontSize='small' /> </span>
-                    </b>
-
-                    <b style={{ display: 'flex', alignItems: 'center' }}>
-                      <small style={{ padding: "5px" }}>price: </small>${item.price}/-
-                    </b>
-                  </Box>
-
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '20px' }}>
-                    <Button sx={{ backgroundColor: 'red' }} variant="contained" size="small" onClick={() => { removeWishListHandler(item) }}>Remove</Button>
-
-                    <Button sx={{ backgroundColor: 'green', ml: 'auto' }} variant="contained" size="small" onClick={() => { moveItemToCart(item) }}>Move to Cart</Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          )
-        }) : <h1 style={{ marginTop: '100px' }}>No items in Wishlist</h1>}
-      </Grid>
+                </Box>
+              </CardContent>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => {
+                    removeWishListHandler(item);
+                  }}
+                >
+                  Remove
+                </Button>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="small"
+                  onClick={() => {
+                    moveItemToCart(item);
+                  }}
+                >
+                  Move to Cart
+                </Button>
+              </Box>
+            </Card>
+          </Grid>
+        ))
+      ) : (
+        <Grid item xs={12}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
+            <h1>No items in Wishlist</h1>
+          </Box>
+        </Grid>
+      )}
+    </Grid> 
     </>
   )
 }

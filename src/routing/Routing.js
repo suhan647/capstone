@@ -13,7 +13,6 @@ function Routing() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/wishlist" element={<WishList />}></Route>
         <Route path="/productdetails/:id" element={<ProductDetails/>} ></Route>
-        <Route path='/productdetails/:id' element={<ProductDetails/>} ></Route>
         <Route path="/cart" element={<Cart />}></Route>
         
     </Routes>
