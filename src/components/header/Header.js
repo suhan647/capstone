@@ -17,7 +17,7 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { reusability } from "../../redux/slices/ProductSlice";
 
@@ -36,22 +36,21 @@ function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
   const dispatch = useDispatch()
-
-  const navigate=useNavigate()
+  const category = useSelector((state) => state.productsList.reuse)
 
   const Mens = () => {
    dispatch(reusability("mens-shirts"))
-   navigate('/')
+  //  navigate('/')
   }
 
   const Womens = () => {
     dispatch(reusability("womens-dresses"))
-    navigate('/')
+    // navigate('/')
    }
 
    const Electronics = () => {
     dispatch(reusability("laptops"))
-    navigate('/')
+    // navigate('/')
    }
 
    const Home = () => {
@@ -83,7 +82,7 @@ function Header(props) {
         </ListItem>
         <ListItem onClick={Mens}>
         <NavLink
-            to="/categories"
+            to={`/categories/${category}`}
             className="link link_container"
             activeClassName="action"
           >
@@ -167,7 +166,7 @@ function Header(props) {
               <Grid item xs={1}>
                 <Box className="link_container , dis" onClick={Mens}>
                 <NavLink
-            to="/categories"
+            to="/categories" category
             className="link link_container"
             activeClassName="action">
                     Men

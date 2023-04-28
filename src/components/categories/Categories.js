@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch, useSelector } from 'react-redux'
 import { productItems, reusability } from '../../redux/slices/ProductSlice'
 import { addItem } from '../../redux/slices/CartSlice'
-import { Link, } from 'react-router-dom'
+import { Link, useParams, } from 'react-router-dom'
 import Loader from '../loaders/Loader'
 import { addToWishList } from '../../redux/slices/WishlistSlice'
 import { useNavigate } from 'react-router-dom'
@@ -20,6 +20,8 @@ function Categories() {
   const dispatch = useDispatch()
 
   const category = useSelector((state) => state.productsList.reuse)
+
+  // const category = useParams()
 
   console.log(category);
 
