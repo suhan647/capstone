@@ -309,3 +309,12 @@
     transform: rotate(-360deg);
   }
 }
+
+.modal-content {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content.show {
+  opacity: 1;
+}

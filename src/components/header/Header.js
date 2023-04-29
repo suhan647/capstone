@@ -20,6 +20,7 @@ import { styled } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { reusability } from "../../redux/slices/ProductSlice";
+import ProfileIcon from "../profile/Profile";
 
 const drawerWidth = 240;
 
@@ -36,7 +37,6 @@ function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
   const dispatch = useDispatch()
-  const category = useSelector((state) => state.productsList.reuse)
 
   const Mens = () => {
    dispatch(reusability("mens-shirts"))
@@ -79,7 +79,7 @@ function Header(props) {
         </ListItem>
         <ListItem onClick={Mens}>
         <NavLink
-            to={`/categories/${category}`}
+            to="categories"
             className="link link_container"
             activeClassName="action"
           >
@@ -220,6 +220,7 @@ function Header(props) {
           </Box>
 
           <Grid item xs={2}>
+
             <Box
               className="icons_container"
               sx={{
@@ -229,6 +230,10 @@ function Header(props) {
                 marginTop: "10px",
               }}
             >
+              <Box sx={{display:"flex", alignItems:'center'}}>
+              <ProfileIcon/>
+              </Box>
+
               <Box
                 className="icons link_container"
                 sx={{
@@ -240,8 +245,7 @@ function Header(props) {
               >
                 <StyledBadge badgeContent={wishcount.length} color="secondary">
                   <NavLink to="/wishlist" className="link">
-                    {" "}
-                    <FavoriteBorderOutlinedIcon />{" "}
+                    <FavoriteBorderOutlinedIcon />
                   </NavLink>
                 </StyledBadge>
 
@@ -257,7 +261,7 @@ function Header(props) {
                   flexDirection: "column",
                   justifyContent: "flex-end",
                   alignItems: "center",
-                  mr: "22%",
+                  mr: "55%",
                 }}
               >
                 <StyledBadge
@@ -266,8 +270,7 @@ function Header(props) {
                   sx={{}}
                 >
                   <NavLink to="/cart" className="link">
-                    {" "}
-                    <LocalMallOutlinedIcon />{" "}
+                    <LocalMallOutlinedIcon />
                   </NavLink>
                 </StyledBadge>
                 <Box>

@@ -5,12 +5,8 @@ import ProductDetails from '../components/products/ProductDetails'
 import WishList from '../components/wishlist/Wishlist.js'
 import Cart from '../components/cart/Cart'
 import Categories from '../components/categories/Categories'
-import {useSelector } from 'react-redux'
-// import { productSlice } from '../redux/slices/ProductSlice'
 
 function Routing() {
-  const category = useSelector((state) => state.productsList.reuse)
-
   return (
     <>
     <Routes>
