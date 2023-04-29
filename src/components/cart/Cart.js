@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeItem,increaseQuantity, decreaseQuantity, resetCart } from '../../redux/slices/CartSlice'
+import { removeItem,increaseQuantity, decreaseQuantity } from '../../redux/slices/CartSlice'
 import '../../App.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkout from '../../checkout/Checkout'

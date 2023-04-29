@@ -1,7 +1,6 @@
 import { Box } from '@mui/system'
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import '../../App.css'
 import StarIcon from '@mui/icons-material/Star';
@@ -12,7 +11,6 @@ import apiService from '../../services/apiService'
 function ProductDetails() {
 
     const [singleData, setSingleData] = useState([])
-
     const [images, setImages] = useState([])
     const [multiImage, setMultiImage] = useState([])
 
@@ -22,8 +20,8 @@ function ProductDetails() {
 
     async function productData(id) {
         try {
-            // let data = await axios.get(`https://dummyjson.com/products/${id}`)
-           let data = await apiService.get(`/products/${id}`)
+
+        let data = await apiService.get(`/products/${id}`)
         console.log(data.data);
         setSingleData(data.data)
         setImages(data.data.images[0])
@@ -33,10 +31,9 @@ function ProductDetails() {
         }
     }
 
-
 useEffect(() => {
     productData(id)
-},[])
+},[id])
 
 const HandleAddToCart = (singleData) => {
  dispatch(addItem(singleData))
@@ -57,7 +54,7 @@ const HandleAddToCart = (singleData) => {
 </Box>
 
 <Box className='singleImage' sx={{paddingLeft:'20px'}}>
-<img src={images} height={375} width={370}  />
+<img src={images} height={375} width={370} alt='product-pic'  />
 </Box>
 
 <Box className='info' sx={{marginLeft:"10%"}}>

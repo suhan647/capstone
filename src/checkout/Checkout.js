@@ -3,13 +3,11 @@ import StripeCheckout from 'react-stripe-checkout';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { resetCart } from '../redux/slices/CartSlice';
-import { useNavigate } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 
 const Checkout = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [paymentComplete, setPaymentComplete] = useState(false);
 
   const handleToken = (token) => {

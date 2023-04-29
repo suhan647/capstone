@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Button, Card, CardContent, Grid } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { removeFromWishList } from '../../redux/slices/WishlistSlice';
 import { addToCart } from '../../redux/slices/CartSlice';
@@ -75,8 +75,10 @@ function WishList() {
         ))
       ) : (
         <Grid item xs={12}>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
-            <h1>No items in Wishlist</h1>
+          <Box sx={{ p: '20px', textAlign: 'center' }}>
+            <Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
+              No Items in WishList
+            </Typography>
           </Box>
         </Grid>
       )}
