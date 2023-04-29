@@ -31,7 +31,9 @@ function Categories() {
       try {
       
         setLoading(true)
-        let data = category ? await apiService.get(`/products/category/${category}`) : await apiService.get('/products')
+        // let data = category ? await apiService.get(`/products/category/${category}`) : await apiService.get('/products')
+        let data = category ? await apiService.get(`/products/category/${category}`) : ''
+
         setProducts(data.data.products)
      dispatch(productItems(data))
      setLoading(false)

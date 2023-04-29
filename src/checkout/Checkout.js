@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
 import { useDispatch } from 'react-redux';
 import { resetCart } from '../redux/slices/CartSlice';
 import { useNavigate } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 
 const Checkout = (props) => {
-  // const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [paymentComplete, setPaymentComplete] = useState(false);
 
   const handleToken = (token) => {
     console.log(token);
-    // setOpen(true);
+    setPaymentComplete(true);
+    
+  };
+
+  const handleClose = () => {
+    setPaymentComplete(false);
     dispatch(resetCart()); 
   };
 
@@ -32,6 +38,12 @@ const Checkout = (props) => {
         <Button variant='contained' sx={{backgroundColor:'#ff1b6b'}}>Checkout</Button>
       </StripeCheckout>
 
+      <Modal open={paymentComplete} onClose={handleClose}>
+        <div style={{backgroundColor: 'white', padding: 20}}>
+          <Typography variant='h5'>Payment Complete!</Typography>
+          <Typography variant='subtitle1'>Thank you for shopping with us.</Typography>
+        </div>
+      </Modal>
     </> 
   );
 };

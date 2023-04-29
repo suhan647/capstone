@@ -46,7 +46,7 @@ function Header(props) {
   const Womens = () => {
     dispatch(reusability("womens-dresses"))
     // navigate('/')
-   }
+   } 
 
    const Electronics = () => {
     dispatch(reusability("laptops"))
@@ -166,7 +166,7 @@ function Header(props) {
               <Grid item xs={1}>
                 <Box className="link_container , dis" onClick={Mens}>
                 <NavLink
-            to="/categories" category
+            to="/categories" 
             className="link link_container"
             activeClassName="action">
                     Men

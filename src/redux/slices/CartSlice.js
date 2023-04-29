@@ -22,7 +22,13 @@ export const cartSlice = createSlice({
       state.quantities[action.payload.id]++;
     },
     decreaseQuantity: (state, action) => {
-      state.quantities[action.payload.id]--;
+      const itemId = action.payload.id;
+      if (state.quantities[itemId] > 1) {
+        state.quantities[itemId]--;
+      } else {
+        state.items = state.items.filter(item => item.id !== itemId);
+        delete state.quantities[itemId];
+      }
     },
     resetCart: state => {
       return initialState;
