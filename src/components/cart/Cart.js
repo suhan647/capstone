@@ -37,7 +37,6 @@ function Cart() {
   return (
     <Box sx={{ marginTop: '8%', fontFamily: 'sans-serif' }}>
   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-    {/* {cartProducts.length === 0 ? <h2>No items in cart.</h2> : null} */}
   </Box>
   {cartProducts.map((items) => {
     const quantity = quantities[items.id] || 0

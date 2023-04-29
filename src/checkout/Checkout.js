@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
 import { useDispatch } from 'react-redux';
 import { resetCart } from '../redux/slices/CartSlice';
 import { useNavigate } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
 
 const Checkout = (props) => {
-  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [paymentComplete, setPaymentComplete] = useState(false);
 
   const handleToken = (token) => {
     console.log(token);
-    setOpen(true);
-    dispatch(resetCart()); 
+    setPaymentComplete(true);
+    
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setPaymentComplete(false);
+    dispatch(resetCart()); 
   };
 
   return (
@@ -36,12 +38,34 @@ const Checkout = (props) => {
         <Button variant='contained' sx={{backgroundColor:'#ff1b6b'}}>Checkout</Button>
       </StripeCheckout>
 
-      {open && (
-        <Alert severity="success" onClose={handleClose}>
-          Payment successful!
-        </Alert>
-      )}
-    </>
+      <Modal open={paymentComplete} onClose={handleClose}>
+  <div style={{
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '5px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <Typography variant='h5' style={{marginBottom: '10px'}}>
+      Payment Complete!
+    </Typography>
+    <Typography variant='subtitle1'>
+      Thank you for shopping with us.
+    </Typography>
+    <Button 
+      variant="contained" 
+      color="primary" 
+      style={{marginTop: '20px'}}
+      onClick={handleClose}
+    >
+      Close
+    </Button>
+  </div>
+</Modal>
+
+    </> 
   );
 };
 

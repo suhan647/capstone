@@ -17,7 +17,7 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { reusability } from "../../redux/slices/ProductSlice";
 
@@ -36,27 +36,22 @@ function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
   const dispatch = useDispatch()
-
-  const navigate=useNavigate()
+  const category = useSelector((state) => state.productsList.reuse)
 
   const Mens = () => {
    dispatch(reusability("mens-shirts"))
-   navigate('/')
   }
 
   const Womens = () => {
     dispatch(reusability("womens-dresses"))
-    navigate('/')
-   }
+   } 
 
    const Electronics = () => {
     dispatch(reusability("laptops"))
-    navigate('/')
    }
 
    const Home = () => {
     dispatch(reusability())
-    
    }
 
   const { window } = props;
@@ -83,13 +78,31 @@ function Header(props) {
           </NavLink>
         </ListItem>
         <ListItem onClick={Mens}>
+        <NavLink
+            to={`/categories/${category}`}
+            className="link link_container"
+            activeClassName="action"
+          >
             Men
+            </NavLink>
         </ListItem>
         <ListItem onClick={Womens}>
+        <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
             Women
+            </NavLink>
         </ListItem>
         <ListItem onClick={Electronics}>
+        <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
             Electronics
+            </NavLink>
             <sup style={{ color: "red", fontSize: "10px" }}>
               <b>New</b>
             </sup>
@@ -149,19 +162,36 @@ function Header(props) {
 
               <Grid item xs={1}>
                 <Box className="link_container , dis" onClick={Mens}>
+                <NavLink
+            to="/categories" 
+            className="link link_container"
+            activeClassName="action">
                     Men
+                    </NavLink>
                 </Box>
               </Grid>
 
               <Grid item xs={2}>
                 <Box className="link_container , dis" onClick={Womens}>
+                <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
                     Women
+                    </NavLink>
                 </Box>
               </Grid>
 
               <Grid item xs={3}>
                 <Box className="link_container , dis" onClick={Electronics}>
+                <NavLink
+            to="/categories"
+            className="link link_container"
+            activeClassName="action"
+          >
                     Electronics
+                    </NavLink>
                     <sup style={{ color: "red", fontSize: "10px" }}>
                       <b>New</b>
                     </sup>
