@@ -21,8 +21,6 @@ function Categories() {
 
   const category = useSelector((state) => state.productsList.reuse)
 
-  // const category = useParams()
-
   console.log(category);
 
   useEffect(() => {

@@ -40,17 +40,14 @@ function Header(props) {
 
   const Mens = () => {
    dispatch(reusability("mens-shirts"))
-  //  navigate('/')
   }
 
   const Womens = () => {
     dispatch(reusability("womens-dresses"))
-    // navigate('/')
    } 
 
    const Electronics = () => {
     dispatch(reusability("laptops"))
-    // navigate('/')
    }
 
    const Home = () => {

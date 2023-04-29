@@ -39,11 +39,32 @@ const Checkout = (props) => {
       </StripeCheckout>
 
       <Modal open={paymentComplete} onClose={handleClose}>
-        <div style={{backgroundColor: 'white', padding: 20}}>
-          <Typography variant='h5'>Payment Complete!</Typography>
-          <Typography variant='subtitle1'>Thank you for shopping with us.</Typography>
-        </div>
-      </Modal>
+  <div style={{
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '5px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <Typography variant='h5' style={{marginBottom: '10px'}}>
+      Payment Complete!
+    </Typography>
+    <Typography variant='subtitle1'>
+      Thank you for shopping with us.
+    </Typography>
+    <Button 
+      variant="contained" 
+      color="primary" 
+      style={{marginTop: '20px'}}
+      onClick={handleClose}
+    >
+      Close
+    </Button>
+  </div>
+</Modal>
+
     </> 
   );
 };
