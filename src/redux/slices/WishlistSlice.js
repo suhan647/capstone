@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   list: [],
-  quantity:{}
+//   quantity:{}
 }
 
 export const wishSlice = createSlice({
@@ -10,12 +10,19 @@ export const wishSlice = createSlice({
   initialState,
   reducers: {
      addToWishList : (state,action) => {
-        state.list.push(action.payload);
-        state.quantity[action.payload.id] = 1
+        let existingItem = state.list.find(product => product.id !== action.payload)
+        if(!existingItem){
+         // state.quantity[action.payload.id]++
+         state.list.push(action.payload)
+        }
+        else{
+         console.log("Item Already present in wishlist");
+        }
+
      },
      removeFromWishList : (state, action) => {
         state.list = state.list.filter((item) => item.id !== action.payload)
-        delete state.quantity[action.payload.id]
+      //   delete state.quantity[action.payload.id]
      }
   },
 })

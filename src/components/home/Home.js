@@ -5,13 +5,16 @@ import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch } from 'react-redux'
 import {  reusability } from '../../redux/slices/ProductSlice'
 import ElectronicProductsBanner from '../banners.js/ElectronicProductsBanner';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const Phones = () => {
     dispatch(reusability("smartphones"))
+    navigate('/categories')
   }
 
   return (

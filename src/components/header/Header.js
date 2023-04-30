@@ -72,7 +72,7 @@ function Header(props) {
           <NavLink
             to="/"
             className="link link_container"
-            activeClassName="action"
+            activeclassname ="action"
           >
             Home
           </NavLink>
@@ -81,7 +81,7 @@ function Header(props) {
         <NavLink
             to="categories"
             className="link link_container"
-            activeClassName="action"
+            activeclassname ="action"
           >
             Men
             </NavLink>
@@ -90,7 +90,7 @@ function Header(props) {
         <NavLink
             to="/categories"
             className="link link_container"
-            activeClassName="action"
+            activeclassname ="action"
           >
             Women
             </NavLink>
@@ -99,7 +99,7 @@ function Header(props) {
         <NavLink
             to="/categories"
             className="link link_container"
-            activeClassName="action"
+            activeclassname ="action"
           >
             Electronics
             </NavLink>
@@ -132,7 +132,7 @@ function Header(props) {
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" }, marginRight: "220px" }}
-            classname="menuicon"
+            className="menuicon"
           >
             <MenuIcon />
           </IconButton>
@@ -154,7 +154,7 @@ function Header(props) {
 
               <Grid item xs={1} sx={{ marginLeft: "10px" }}>
                 <Box className="link_container , dis" onClick={Home}>
-                  <NavLink to="/" className="link" activeClassName="active">
+                  <NavLink to="/" className="link" activeclassname ="active">
                     Home
                   </NavLink>
                 </Box>
@@ -165,7 +165,7 @@ function Header(props) {
                 <NavLink
             to="/categories" 
             className="link link_container"
-            activeClassName="action">
+            activeclassname ="action">
                     Men
                     </NavLink>
                 </Box>
@@ -176,7 +176,7 @@ function Header(props) {
                 <NavLink
             to="/categories"
             className="link link_container"
-            activeClassName="action"
+            activeclassname ="action"
           >
                     Women
                     </NavLink>
@@ -188,7 +188,7 @@ function Header(props) {
                 <NavLink
             to="/categories"
             className="link link_container"
-            activeClassName="action"
+            activeclassname ="action"
           >
                     Electronics
                     </NavLink>
