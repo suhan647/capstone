@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Routing from "./routing/Routing";
 import { ToastContainer } from 'react-toastify';
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
     <ToastContainer/>
       <Header />
       <Routing />
+      <Footer />
     </>
   );
 }
