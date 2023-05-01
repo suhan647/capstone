@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
-import Button from '@mui/material/Button';
-import { useDispatch } from 'react-redux';
-import { resetCart } from '../redux/slices/CartSlice';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+import React, { useState } from "react";
+import StripeCheckout from "react-stripe-checkout";
+import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { resetCart } from "../redux/slices/CartSlice";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
 
 const Checkout = (props) => {
   const dispatch = useDispatch();
@@ -13,12 +13,11 @@ const Checkout = (props) => {
   const handleToken = (token) => {
     console.log(token);
     setPaymentComplete(true);
-    
   };
 
   const handleClose = () => {
     setPaymentComplete(false);
-    dispatch(resetCart()); 
+    dispatch(resetCart());
   };
 
   return (
@@ -28,42 +27,45 @@ const Checkout = (props) => {
         token={handleToken}
         billingAddress
         shippingAddress
-        name="My Awesome Store"
+        name="City Shop"
         description="Checkout with Stripe"
-        amount={(props.grandTotal + 10) + "00"}
+        amount={props.grandTotal + 10 + "00"}
         currency="USD"
       >
-        <Button variant='contained' sx={{backgroundColor:'#ff1b6b'}}>Checkout</Button>
+        <Button variant="contained" sx={{ backgroundColor: "#ff1b6b" }}>
+          Checkout
+        </Button>
       </StripeCheckout>
 
       <Modal open={paymentComplete} onClose={handleClose}>
-  <div style={{
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '5px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }}>
-    <Typography variant='h5' style={{marginBottom: '10px'}}>
-      Payment Complete!
-    </Typography>
-    <Typography variant='subtitle1'>
-      Thank you for shopping with us.
-    </Typography>
-    <Button 
-      variant="contained" 
-      color="primary" 
-      style={{marginTop: '20px'}}
-      onClick={handleClose}
-    >
-      Close
-    </Button>
-  </div>
-</Modal>
-
-    </> 
+        <div
+          style={{
+            backgroundColor: "#fff",
+            padding: "20px",
+            borderRadius: "5px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h5" style={{ marginBottom: "10px" }}>
+            Payment Complete!
+          </Typography>
+          <Typography variant="subtitle1">
+            Thank you for shopping with us.
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "20px" }}
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+        </div>
+      </Modal>
+    </>
   );
 };
 
