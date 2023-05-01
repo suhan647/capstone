@@ -1,13 +1,35 @@
 import React, { useState } from 'react'
 import AuthForm from './AuthForm' 
+import {  signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase/Config';
+import {  toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const navigate= useNavigate()
 
     const submitHandler = (e) => {
         e.preventDefault()
-      console.log('from Loign',email,password);
+
+        setLoading(true)
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+         const user = userCredential.user;
+         console.log("user");
+         toast.success("Loggedin Successfully")
+         setLoading(false)
+         navigate('/')
+      })
+        .catch((error) => {
+         const errorMessage = error.message;
+         setLoading(false)
+         toast.error(errorMessage)
+     });
+
     }
 
   return (
@@ -18,6 +40,7 @@ function Login() {
            password={password}
            setPassword={setPassword}
            submitHandler={submitHandler}
+           loading={loading}
            />
 
       </div>

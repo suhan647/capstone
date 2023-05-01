@@ -55,11 +55,11 @@ const ProfileIcon = () => {
               "&:hover": {
                 backgroundColor: "#f5f5f5",
               },
-               // remove underline
+               
             }}
           >
             <ListItemIcon>
-              <AssignmentIndIcon fontSize="small" /> {/* add new icon */}
+              <AssignmentIndIcon fontSize="small" /> 
             </ListItemIcon>
             Register
           </MenuItem>
@@ -75,7 +75,7 @@ const ProfileIcon = () => {
               "&:hover": {
                 backgroundColor: "#f5f5f5",
               },
-              textDecoration: 'none', // remove underline
+              textDecoration: 'none', 
             }}
           >
             <ListItemIcon>
@@ -85,7 +85,6 @@ const ProfileIcon = () => {
           </MenuItem>
         </NavLink>
 
-        {/* <NavLink to='/register'> */}
         <MenuItem
           onClick={handleClose}
           sx={{
@@ -95,7 +94,7 @@ const ProfileIcon = () => {
             "&:hover": {
               backgroundColor: "#f5f5f5",
             },
-            textDecoration: 'none', // remove underline
+            textDecoration: 'none', 
           }}
         >
           <ListItemIcon>

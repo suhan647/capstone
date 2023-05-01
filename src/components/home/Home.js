@@ -7,6 +7,7 @@ import {  reusability } from '../../redux/slices/ProductSlice'
 import ElectronicProductsBanner from '../banners.js/ElectronicProductsBanner';
 import { useNavigate } from 'react-router-dom';
 
+
 function Home() {
 
   const dispatch = useDispatch()
@@ -52,6 +53,7 @@ function Home() {
     <Box sx={{mt:'40px'}}>
     <ElectronicProductsBanner/>
     </Box>
+
 </>
    
   )
