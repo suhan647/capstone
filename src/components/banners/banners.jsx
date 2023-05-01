@@ -23,7 +23,7 @@ const bannerStyles = {
   },
   button: {
     backgroundColor: '#f44336',
-    color: '#fff',
+    color: '#fff', 
     borderRadius: '20px',
     padding: '10px 30px',
     '&:hover': {
