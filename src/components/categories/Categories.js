@@ -55,6 +55,9 @@ function Categories() {
   const Phones = () => {
     dispatch(reusability("smartphones"))
   }
+  const Laptops =()=>{
+    dispatch(reusability("laptops"))
+  }
 
   return (
     <>
@@ -70,7 +73,7 @@ function Categories() {
       </Tooltip>
 
       <Tooltip title="Laptops">
-      <Avatar className='hoverzoom'  alt="laptops" src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFwdG9wc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      <Avatar className='hoverzoom' onClick={Laptops} alt="laptops" src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFwdG9wc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
       </Tooltip>
 
       <Tooltip title="Mens">
