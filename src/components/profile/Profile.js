@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { NavLink } from 'react-router-dom';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd'; // import new icon from MUI
 
 const profileIconStyles = {
   avatar: {
@@ -42,31 +44,57 @@ const ProfileIcon = () => {
           },
         }}
       >
+        <NavLink to='/register'>
+          <MenuItem
+            onClick={handleClose}
+            sx={{
+              color: "#333",
+              fontWeight: "bold",
+              padding: "20px",
+              textDecoration: 'none !important',
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+              },
+               
+            }}
+          >
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" /> 
+            </ListItemIcon>
+            Register
+          </MenuItem>
+        </NavLink>
+
+        <NavLink to='/login' sx={{ textDecoration: 'none' }}>
+          <MenuItem
+            onClick={handleClose}
+            sx={{
+              color: "#333",
+              fontWeight: "bold",
+              padding: "20px",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+              },
+              textDecoration: 'none', 
+            }}
+          >
+            <ListItemIcon>
+              <PersonIcon fontSize="small" />
+            </ListItemIcon>
+            Login
+          </MenuItem>
+        </NavLink>
+
         <MenuItem
           onClick={handleClose}
-          style={{
+          sx={{
             color: "#333",
             fontWeight: "bold",
             padding: "20px",
             "&:hover": {
               backgroundColor: "#f5f5f5",
             },
-          }}
-        >
-          <ListItemIcon>
-            <PersonIcon fontSize="small" />
-          </ListItemIcon>
-          Login
-        </MenuItem>
-        <MenuItem
-          onClick={handleClose}
-          style={{
-            color: "#333",
-            fontWeight: "bold",
-            padding: "20px",
-            "&:hover": {
-              backgroundColor: "#f5f5f5",
-            },
+            textDecoration: 'none', 
           }}
         >
           <ListItemIcon>
@@ -74,9 +102,11 @@ const ProfileIcon = () => {
           </ListItemIcon>
           Logout
         </MenuItem>
+        {/* </NavLink> */}
+
       </Menu>
     </>
   );
 };
 
-export default ProfileIcon;
+export default ProfileIcon
