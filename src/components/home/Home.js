@@ -9,6 +9,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import { WomensProductsBanner, MenProductsBanner, ElectronicsBanner } from '../banners/banners.jsx';
 
+ 
 const popularBrands = [
   {
     id: 1,
@@ -34,6 +35,7 @@ const popularBrands = [
 
 
 ];
+
 
 const newArrivals = [
   {
