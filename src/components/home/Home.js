@@ -1,3 +1,14 @@
+import { Avatar, Stack } from '@mui/material'
+import { Box } from '@mui/system'
+import Carousal from '../carousal/Carousal'
+import Tooltip from '@mui/material/Tooltip';
+import { useDispatch } from 'react-redux'
+import { reusability } from '../../redux/slices/ProductSlice'
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Grid } from '@mui/material';
+import { WomensProductsBanner, MenProductsBanner, ElectronicsBanner } from '../banners/banners.jsx';
+
 const newArrivals = [
   {
     id: 1,
