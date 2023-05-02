@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { NavLink } from 'react-router-dom';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd'; // import new icon from MUI
+import { NavLink, useNavigate } from 'react-router-dom';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import {  signOut } from "firebase/auth";
+import { auth } from '../../firebase/Config'
+import { toast } from 'react-toastify';
 
 const profileIconStyles = {
   avatar: {
@@ -18,6 +21,8 @@ const ProfileIcon = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const navigate = useNavigate()
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -25,6 +30,17 @@ const ProfileIcon = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  function logoutUser  () {
+    signOut(auth).then(() => {
+      toast.success("Logout successfully")
+      navigate('/')
+      console.log("auth", auth);
+    }).catch((error) => {
+      toast.error(error.message)
+    });
+    
+  }
 
   return (
     <>
@@ -97,7 +113,7 @@ const ProfileIcon = () => {
             textDecoration: 'none', 
           }}
         >
-          <ListItemIcon>
+          <ListItemIcon  onClick={()=>{logoutUser()}}>
             <LogoutIcon fontSize="small" />
           </ListItemIcon>
           Logout

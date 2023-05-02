@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Routing from "./routing/Routing";
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./components/footer/Footer";
 
 function App() {
