@@ -67,12 +67,9 @@ function AuthForm(props) {
     dispatch(isLoggedIn(true))
   }).catch((error) => {
    toast.error(error.message)
-  
-  });
-   
+  });   
   }
 
-  
   return (
     <>
       {loading && <Loader />}
