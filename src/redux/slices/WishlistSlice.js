@@ -9,7 +9,7 @@ export const wishSlice = createSlice({
   initialState,
   reducers: {
      addToWishList : (state,action) => {
-        let existingItem = state.list.find(product => product.id === action.payload)
+        const existingItem = state.list.find(product => product.id === action.payload.id)
         if(!existingItem){
          state.list.push(action.payload)
         }

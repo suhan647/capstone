@@ -21,6 +21,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { reusability } from "../../redux/slices/ProductSlice";
 import ProfileIcon from "../profile/Profile";
+import { toast } from "react-toastify";
 
 const drawerWidth = 240;
 
@@ -37,6 +38,13 @@ function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
   const dispatch = useDispatch()
+  const authenticated = useSelector((state) => state.authentication.user)
+
+  const cart = () => {
+    if(!authenticated){
+      toast.error("You need to login To view the cart")
+    }
+  }
 
   const Mens = () => {
    dispatch(reusability("mens-shirts"))
@@ -270,11 +278,11 @@ function Header(props) {
                   sx={{}}
                 >
                   <NavLink to="/cart" className="link">
-                    <LocalMallOutlinedIcon />
+                    <LocalMallOutlinedIcon onClick={cart}/>
                   </NavLink>
                 </StyledBadge>
                 <Box>
-                  <small>bag</small>
+                  <small onClick={cart}>bag</small>
                 </Box>
               </Box>
             </Box>
