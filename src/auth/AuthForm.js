@@ -21,6 +21,8 @@ import Loader from "../components/loaders/Loader";
 import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { auth } from "../firebase/Config";
 import { toast } from "react-toastify";
+import { isLoggedIn } from "../redux/slices/AuthSlice";
+import { useDispatch } from "react-redux";
 
 const styles = {
   paper: {
@@ -51,8 +53,10 @@ function AuthForm(props) {
   const path = useLocation();
   const toggle = path.pathname;
   const navigate = useNavigate()
+  const dispatch=useDispatch()
 
   const provider = new GoogleAuthProvider();
+
   const LoginwithGoogle = () =>{
     
     signInWithPopup(auth, provider)
@@ -60,6 +64,7 @@ function AuthForm(props) {
     const user = result.user;
     toast.success("Login successFul")
     navigate('/')
+    dispatch(isLoggedIn(true))
   }).catch((error) => {
    toast.error(error.message)
   
@@ -70,7 +75,6 @@ function AuthForm(props) {
   
   return (
     <>
-      {/* <ToastContainer /> */}
       {loading && <Loader />}
       <div className="mt" style={{ marginTop: "120px" }}>
         <Paper style={styles.paper}>
@@ -171,10 +175,6 @@ function AuthForm(props) {
                         </small>
                       </NavLink>
                     )}
-
-                    {/* <NavLink to='/login' className='textdecoration'>
-                {toggle === '/register' ?  <small style={{color:'blue', cursor:'pointer'}}>Already Registered? <b>Login!</b></small> : "" }
-            </NavLink> */}
                   </Box>
                 </Box>
               </Grid>

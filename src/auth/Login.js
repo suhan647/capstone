@@ -4,6 +4,8 @@ import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase/Config';
 import {  toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { isLoggedIn } from '../redux/slices/AuthSlice';
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -11,6 +13,7 @@ function Login() {
     const [loading, setLoading] = useState(false)
 
     const navigate= useNavigate()
+    const dispatch = useDispatch()
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -19,10 +22,12 @@ function Login() {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
          const user = userCredential.user;
+         dispatch(isLoggedIn(true))
          console.log("user");
          toast.success("Loggedin Successfully")
          setLoading(false)
          navigate('/')
+         dispatch(isLoggedIn(true))
       })
         .catch((error) => {
          const errorMessage = error.message;

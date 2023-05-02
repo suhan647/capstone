@@ -7,6 +7,9 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import {  signOut } from "firebase/auth";
 import { auth } from '../../firebase/Config'
 import { toast } from 'react-toastify';
+import {  useDispatch, useSelector } from 'react-redux';
+import { isLoggedIn } from '../../redux/slices/AuthSlice';
+
 
 const profileIconStyles = {
   avatar: {
@@ -22,6 +25,9 @@ const ProfileIcon = () => {
   const open = Boolean(anchorEl);
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+ const authentication = useSelector((state) => state.authentication.user)
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,12 +40,12 @@ const ProfileIcon = () => {
   function logoutUser  () {
     signOut(auth).then(() => {
       toast.success("Logout successfully")
+      dispatch(isLoggedIn(false))
       navigate('/')
       console.log("auth", auth);
     }).catch((error) => {
       toast.error(error.message)
     });
-    
   }
 
   return (
@@ -60,28 +66,33 @@ const ProfileIcon = () => {
           },
         }}
       >
-        <NavLink to='/register'>
-          <MenuItem
-            onClick={handleClose}
-            sx={{
-              color: "#333",
-              fontWeight: "bold",
-              padding: "20px",
-              textDecoration: 'none !important',
-              "&:hover": {
-                backgroundColor: "#f5f5f5",
-              },
-               
-            }}
-          >
-            <ListItemIcon>
-              <AssignmentIndIcon fontSize="small" /> 
-            </ListItemIcon>
-            Register
-          </MenuItem>
-        </NavLink>
-
-        <NavLink to='/login' sx={{ textDecoration: 'none' }}>
+        {!authentication ?
+            <NavLink to='/register'>
+            <MenuItem
+              onClick={handleClose}
+              sx={{
+                color: "#333",
+                fontWeight: "bold",
+                padding: "20px",
+                textDecoration: 'none !important',
+                "&:hover": {
+                  backgroundColor: "#f5f5f5",
+                },
+                 
+              }}
+            >
+              <ListItemIcon>
+                <AssignmentIndIcon fontSize="small" /> 
+              </ListItemIcon>
+              Register
+            </MenuItem>
+          </NavLink>  
+             :
+             " "
+                }
+       
+         {!authentication ? 
+         <NavLink to='/login' sx={{ textDecoration: 'none' }}>
           <MenuItem
             onClick={handleClose}
             sx={{
@@ -100,6 +111,9 @@ const ProfileIcon = () => {
             Login
           </MenuItem>
         </NavLink>
+          :
+          " "
+          }
 
         <MenuItem
           onClick={handleClose}
