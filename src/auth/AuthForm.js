@@ -14,12 +14,13 @@ import {
 import React, { useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Box } from "@mui/system";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import Loader from "../components/loaders/Loader";
+import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
+import { auth } from "../firebase/Config";
+import { toast } from "react-toastify";
 
 const styles = {
   paper: {
@@ -49,7 +50,24 @@ function AuthForm(props) {
 
   const path = useLocation();
   const toggle = path.pathname;
+  const navigate = useNavigate()
 
+  const provider = new GoogleAuthProvider();
+  const LoginwithGoogle = () =>{
+    
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    const user = result.user;
+    toast.success("Login successFul")
+    navigate('/')
+  }).catch((error) => {
+   toast.error(error.message)
+  
+  });
+   
+  }
+
+  
   return (
     <>
       {/* <ToastContainer /> */}
@@ -129,6 +147,7 @@ function AuthForm(props) {
                   }}
                 >
                   <Button
+                  onClick={LoginwithGoogle}
                     sx={{
                       backgroundColor: "red",
                       color: "white",
