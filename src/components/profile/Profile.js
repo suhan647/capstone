@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -9,6 +9,7 @@ import { auth } from '../../firebase/Config'
 import { toast } from 'react-toastify';
 import {  useDispatch, useSelector } from 'react-redux';
 import { isLoggedIn } from '../../redux/slices/AuthSlice';
+import { Box } from '@mui/system';
 
 
 const profileIconStyles = {
@@ -27,7 +28,7 @@ const ProfileIcon = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
- const authentication = useSelector((state) => state.authentication.user)
+ const authenticated = useSelector((state) => state.authentication.user)
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,14 +40,18 @@ const ProfileIcon = () => {
 
   function logoutUser  () {
     signOut(auth).then(() => {
-      toast.success("Logout successfully")
-      dispatch(isLoggedIn(false))
       navigate('/')
+      dispatch(isLoggedIn(false))
+      toast.success("Logout successfully")
       console.log("auth", auth);
     }).catch((error) => {
       toast.error(error.message)
     });
   }
+
+  // useEffect(() => {
+    
+  // },[authenticated])
 
   return (
     <>
@@ -66,7 +71,7 @@ const ProfileIcon = () => {
           },
         }}
       >
-        {!authentication ?
+        {!authenticated ?
             <NavLink to='/register'>
             <MenuItem
               onClick={handleClose}
@@ -91,7 +96,7 @@ const ProfileIcon = () => {
              " "
                 }
        
-         {!authentication ? 
+         {!authenticated ? 
          <NavLink to='/login' sx={{ textDecoration: 'none' }}>
           <MenuItem
             onClick={handleClose}
@@ -115,8 +120,10 @@ const ProfileIcon = () => {
           " "
           }
 
+        <Box  onClick={logoutUser}>
         <MenuItem
           onClick={handleClose}
+         
           sx={{
             color: "#333",
             fontWeight: "bold",
@@ -127,11 +134,12 @@ const ProfileIcon = () => {
             textDecoration: 'none', 
           }}
         >
-          <ListItemIcon  onClick={()=>{logoutUser()}}>
+          <ListItemIcon  >
             <LogoutIcon fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>
+        </Box>
         {/* </NavLink> */}
 
       </Menu>
