@@ -19,7 +19,7 @@ const bannerStyles = {
   },
   subtitle: {
     color: '#555',
-    marginBottom: '30px',
+    marginBottom: '40px',
   },
   button: {
     backgroundColor: '#f44336',
@@ -32,7 +32,7 @@ const bannerStyles = {
   },
   image: {
     width: '100%',
-    height: '100%',
+    height: '80%',
     objectFit: 'cover',
     borderRadius: '8px',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
@@ -76,8 +76,8 @@ const WomensProductsBanner = () => {
   return (
     <CategoryBanner
       title="Women's Collection"
-      subtitle="Shop our collection of women's clothing and accessories."
-      imageUrl="https://img.freepik.com/premium-vector/spring-fashion-sale-banner-design-template_2239-1180.jpg?size=626&ext=jpg&ga=GA1.2.91273752.1682885983&semt=ais"
+      subtitle="Shop our collection of Women's Jewellery and accessories."
+      imageUrl= "https://img.freepik.com/free-photo/vintage-still-life-with-roses-ballet-shoes_155003-636.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais"
       buttonText="Shop Now"
       xs={12} md={6}
       justifyContent="center"
@@ -94,19 +94,19 @@ const MenProductsBanner = () => {
 
   const handleShopNow = () => {
     navigate('/categories');
+    dispatch(reusability("mens-watches"))
   };
 
   return (
     <CategoryBanner
       title="Men's Collection"
-      subtitle="Shop our collection of men's clothing and accessories."
-      imageUrl="https://img.freepik.com/free-vector/promotion-fashion-banner_1188-201.jpg?size=626&ext=jpg&ga=GA1.2.91273752.1682885983&semt=ais"
+      subtitle="Shop our collection of men's accessories."
       buttonText="Shop Now"
       xs={12} md={6}
       justifyContent="center"
       alignItems="center"
       onClick={handleShopNow}
-      
+      imageUrl="https://img.freepik.com/premium-photo/luxury-men-s-watch-with-cufflinks-breastplate-sunglasses-close-up_427248-563.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais"
      />
   );
 };
@@ -125,7 +125,7 @@ const ElectronicsBanner = () => {
     <CategoryBanner
       title="Electronics & Accessories"
       subtitle="Shop our collection of Laptops and Smartphones."
-      imageUrl="https://img.freepik.com/premium-vector/discount-sale-promotion-event-social-media-template_554907-437.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais"
+      imageUrl="https://img.freepik.com/free-photo/laptop-with-camera-smartphone-table_23-2148036986.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais"
       buttonText="Shop Now"
       xs={12} md={6}
       justifyContent="center"
