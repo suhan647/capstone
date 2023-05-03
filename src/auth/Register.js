@@ -5,6 +5,7 @@ import { auth } from '../firebase/Config'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/loaders/Loader';
  
 
 function Register() {
@@ -16,10 +17,9 @@ function Register() {
 
     const submitHandler = (e) => {
         e.preventDefault()
-    //   console.log('from register',email,password);
       
      setLoading(true)
-createUserWithEmailAndPassword(auth, email, password)
+     createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
 
     const user = userCredential.user;
@@ -38,6 +38,7 @@ createUserWithEmailAndPassword(auth, email, password)
 
   return (
     <div style={{marginTop:"20px"}}>
+      <Loader open={loading} />
         <AuthForm 
            email={email} 
            setEmail={setEmail}

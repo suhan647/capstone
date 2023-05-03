@@ -103,7 +103,7 @@ function Categories() {
   <h2>{category ? `${category}` :" "}</h2>
 </Box>
 {loading ? (
-  <Loader />
+  <Loader open={loading} />
 ) : (
   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
     <Box sx={{ width: '95%' }}>

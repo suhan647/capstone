@@ -238,9 +238,10 @@ function Header(props) {
                 marginTop: "10px",
               }}
             >
-              <Box sx={{display:"flex", alignItems:'center'}}>
+              <Box sx={{ alignItems:'center'}}>
               <ProfileIcon/>
               </Box>
+             
 
               <Box
                 className="icons link_container"
