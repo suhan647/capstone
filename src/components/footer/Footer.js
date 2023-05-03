@@ -46,7 +46,7 @@ export default function Footer() {
             </Link>
             <br />
             <Typography variant="body2" gutterBottom>
-              +91-9038497002
+              +91-1111111111
             </Typography>
             <Link href="#" color="inherit" underline="hover">
               Email Us

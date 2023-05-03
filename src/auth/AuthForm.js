@@ -1,7 +1,5 @@
 import {
-  Backdrop,
   Button,
-  CircularProgress,
   FormControl,
   Grid,
   IconButton,
@@ -42,7 +40,7 @@ function AuthForm(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [load, setLoad] = useState(false)
 
-  const { email, setEmail, password, setPassword, submitHandler, loading } =
+  const { email, setEmail, password, setPassword, submitHandler } =
     props;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -63,7 +61,6 @@ function AuthForm(props) {
     signInWithPopup(auth, provider)
   .then((result) => {
     setLoad(true)
-    const user = result.user;
     toast.success("Login successFul")
     navigate('/')
     dispatch(isLoggedIn(true))
@@ -77,7 +74,6 @@ function AuthForm(props) {
 
   return (
     <>
-      {/* {loading && <Loader />} */}
       <Loader  open={load}/>
       <div className="mt" style={{ marginTop: "120px" }}>
         <Paper style={styles.paper}>
