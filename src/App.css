@@ -357,13 +357,22 @@
   margin-bottom: 10px;
 }
 
+/* Add hover effect to social media links */
+.footer-section a:hover i {
+  transform: scale(1.2);
+}
+
+.footer-section a i {
+  transition: all 0.2s ease-in-out;
+}
+
 .footer-bottom {
   text-align: center;
   font-size: large;
 }
 
 /* Media Queries */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
   .footer-links {
     flex-direction: column;
     margin-bottom: 30px;
