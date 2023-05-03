@@ -1,4 +1,3 @@
-import React from "react";
 import { Grid, Typography, Link, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
