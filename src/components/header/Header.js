@@ -18,8 +18,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { reusability } from "../../redux/slices/ProductSlice";
+import {  useSelector } from "react-redux";
 import ProfileIcon from "../profile/Profile";
 import { toast } from "react-toastify";
 
@@ -37,7 +36,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
-  const dispatch = useDispatch()
   const authenticated = useSelector((state) => state.authentication.user)
 
   const cart = () => {
@@ -46,21 +44,6 @@ function Header(props) {
     }
   }
 
-  const Mens = () => {
-   dispatch(reusability("mens-shirts"))
-  }
-
-  const Womens = () => {
-    dispatch(reusability("womens-dresses"))
-   } 
-
-   const Electronics = () => {
-    dispatch(reusability("laptops"))
-   }
-
-   const Home = () => {
-    dispatch(reusability())
-   }
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -76,7 +59,7 @@ function Header(props) {
       </Typography>
       <Divider />
       <List>
-        <ListItem  onClick={Home}>
+        <ListItem >
           <NavLink
             to="/"
             className="link link_container"
@@ -85,27 +68,27 @@ function Header(props) {
             Home
           </NavLink>
         </ListItem>
-        <ListItem onClick={Mens}>
+        <ListItem >
         <NavLink
-            to="categories"
+            to="categories/mens-shirts"
             className="link link_container"
             activeclassname ="action"
           >
             Men
             </NavLink>
         </ListItem>
-        <ListItem onClick={Womens}>
+        <ListItem >
         <NavLink
-            to="/categories"
+            to="/categories/womens-dresses"
             className="link link_container"
             activeclassname ="action"
           >
             Women
             </NavLink>
         </ListItem>
-        <ListItem onClick={Electronics}>
+        <ListItem >
         <NavLink
-            to="/categories"
+            to="/categories/laptops"
             className="link link_container"
             activeclassname ="action"
           >
@@ -161,7 +144,7 @@ function Header(props) {
               </Grid>
 
               <Grid item xs={1} sx={{ marginLeft: "10px" }}>
-                <Box className="link_container , dis" onClick={Home}>
+                <Box className="link_container , dis">
                   <NavLink to="/" className="link" activeclassname ="active">
                     Home
                   </NavLink>
@@ -169,9 +152,9 @@ function Header(props) {
               </Grid>
 
               <Grid item xs={1}>
-                <Box className="link_container , dis" onClick={Mens}>
+                <Box className="link_container , dis" >
                 <NavLink
-            to="/categories" 
+            to="/categories/mens-shirts" 
             className="link link_container"
             activeclassname ="action">
                     Men
@@ -180,9 +163,9 @@ function Header(props) {
               </Grid>
 
               <Grid item xs={2}>
-                <Box className="link_container , dis" onClick={Womens}>
+                <Box className="link_container , dis">
                 <NavLink
-            to="/categories"
+            to="/categories/womens-dresses"
             className="link link_container"
             activeclassname ="action"
           >
@@ -192,9 +175,9 @@ function Header(props) {
               </Grid>
 
               <Grid item xs={3}>
-                <Box className="link_container , dis" onClick={Electronics}>
+                <Box className="link_container , dis">
                 <NavLink
-            to="/categories"
+            to="/categories/laptops"
             className="link link_container"
             activeclassname ="action"
           >

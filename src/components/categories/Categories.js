@@ -3,10 +3,10 @@ import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 import Carousal from '../carousal/Carousal'
 import Tooltip from '@mui/material/Tooltip';
-import {  useDispatch, useSelector } from 'react-redux'
-import { productItems, reusability } from '../../redux/slices/ProductSlice'
+import {  useDispatch } from 'react-redux'
+import { productItems } from '../../redux/slices/ProductSlice'
 import { addItem } from '../../redux/slices/CartSlice'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Loader from '../loaders/Loader'
 import { addToWishList } from '../../redux/slices/WishlistSlice'
 import apiService from '../../services/apiService'
@@ -19,9 +19,8 @@ function Categories() {
 
   const dispatch = useDispatch()
 
-  const category = useSelector((state) => state.productsList.reuse)
-
-  console.log(category);
+  const category = useParams()
+  console.log("params",category.name);
 
   useEffect(() => {
 
@@ -31,7 +30,7 @@ function Categories() {
       try {
       
         setLoading(true)
-        let data = category ? await apiService.get(`/products/category/${category}`) : ''
+        let data = category ? await apiService.get(`/products/category/${category.name}`) : ''
         setProducts(data.data.products)
      dispatch(productItems(data))
      setLoading(false)
@@ -55,21 +54,6 @@ function Categories() {
        dispatch(addToWishList(items))      
   }
 
-  const Phones = () => {
-    dispatch(reusability("smartphones"))
-  }
-  const Laptops =()=>{
-    dispatch(reusability("laptops"))
-  }
-  const Mens =()=>{
-    dispatch(reusability("mens-shoes"))
-  }
-  const Womens=()=>{
-    dispatch(reusability("tops"))
-  }
-  const Shoes =()=>{
-    dispatch(reusability("womens-shoes"))
-  }
   return (
     <>
   <Box>
@@ -80,30 +64,40 @@ function Categories() {
    <Stack className='scroll' direction="row" spacing={10} sx={{marginX:'5px',mt:'20px',overflowX:'scroll', whiteSpace:'nowrap',padding:'20px',overflowY:'none',border:'2px solid grey',borderRadius:"30px 10px",backgroundColor:"yellow" }}>
     
    <Tooltip title="Phones">
-      <Avatar className='hoverzoom' onClick={Phones}  alt="phones" src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+    <Link to='/categories/smartphones'>
+      <Avatar className='hoverzoom' alt="phones" src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>  
       </Tooltip>
 
       <Tooltip title="Laptops">
-      <Avatar className='hoverzoom' onClick={Laptops} alt="laptops" src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFwdG9wc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      <Link to='/categories/laptops'>
+      <Avatar className='hoverzoom'  alt="laptops" src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFwdG9wc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
       </Tooltip>
 
       <Tooltip title="Mens">
-      <Avatar className='hoverzoom' onClick={Mens}  alt="mens-shoes" src="https://img.freepik.com/free-photo/alternative-man-tying-boots-shoelaces-floor_53876-101248.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais" sx={{ height: '120px', width: '120px' }}/>
+      <Link to='/categories/mens-shoes'>
+      <Avatar className='hoverzoom'  alt="mens-shoes" src="https://img.freepik.com/free-photo/alternative-man-tying-boots-shoelaces-floor_53876-101248.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
       </Tooltip>
 
       <Tooltip title="Womens">
-      <Avatar className='hoverzoom'  onClick={Womens} alt="tops" src="https://images.unsplash.com/photo-1552874869-5c39ec9288dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW5zJTIwZmFzaGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      <Link to='/categories/tops'>
+      <Avatar className='hoverzoom'   alt="tops" src="https://images.unsplash.com/photo-1552874869-5c39ec9288dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW5zJTIwZmFzaGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
       </Tooltip>
 
       <Tooltip title="Shoes">
-      <Avatar className='hoverzoom'  onClick={Shoes}  alt="womens-shoes" src="https://plus.unsplash.com/premium_photo-1669644856868-6613f6683346?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2hvZXMlMjBmYXNoaW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      <Link to='/categories/womens-shoes'>
+      <Avatar className='hoverzoom'  alt="womens-shoes" src="https://plus.unsplash.com/premium_photo-1669644856868-6613f6683346?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2hvZXMlMjBmYXNoaW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
       </Tooltip>
     
     </Stack>
     </Box>
    
 <Box sx={{display:'flex',justifyContent:'center',mt:'5px'}}>
-  <h2>{category ? `${category}` :" "}</h2>
+  <h2>{category ? `${category.name}` :" "}</h2>
 </Box>
 {loading ? (
   <Loader open={loading} />

@@ -10,7 +10,6 @@ import Login from '../auth/Login'
 import { useSelector } from 'react-redux'
 
 
-// const navigate= useNavigate()
 
 function PrivateRoute({loggedin, children}){
   if(loggedin){
@@ -28,20 +27,13 @@ function Routing() {
     <>
     <Routes>
     
-        <Route path="/" element={<Home />}></Route>
+        <Route index path="/" element={<Home />}></Route>
         <Route path="/wishlist" element={<WishList />}></Route>
         <Route path="/productdetails/:id" element={<ProductDetails/>} ></Route>
         <Route path="/cart" element={ <PrivateRoute loggedin={authenticated}><Cart /> </PrivateRoute>}></Route>
-        <Route path='/categories' element={<Categories />}></Route>
+        <Route path='/categories/:name' element={<Categories />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
-
-
-        {/* <Route path='/watchlist' element={
-      <PrivateRoute loggedin={authenticated}>
-        <WatchList />
-        </PrivateRoute>} /> */}
-    
         
     </Routes>
     </>
