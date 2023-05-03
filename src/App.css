@@ -239,11 +239,6 @@
   }
 }
 
-.loadingText {
-  margin-top: 7%;
-  margin-left: 50%;
-}
-
 .modal-content {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -252,3 +247,4 @@
 .modal-content.show {
   opacity: 1;
 }
+
