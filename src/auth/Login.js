@@ -6,6 +6,7 @@ import {  toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isLoggedIn } from '../redux/slices/AuthSlice';
+import Loader from '../components/loaders/Loader';
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -39,6 +40,7 @@ function Login() {
 
   return (
     <div style={{marginTop:"20px"}}>
+      <Loader open={loading} />
         <AuthForm 
            email={email} 
            setEmail={setEmail}

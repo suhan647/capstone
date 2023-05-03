@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -48,10 +48,6 @@ const ProfileIcon = () => {
       toast.error(error.message)
     });
   }
-
-  // useEffect(() => {
-    
-  // },[authenticated])
 
   return (
     <>
@@ -140,8 +136,6 @@ const ProfileIcon = () => {
           Logout
         </MenuItem>
         </Box>
-        {/* </NavLink> */}
-
       </Menu>
     </>
   );

@@ -40,6 +40,7 @@ const styles = {
 
 function AuthForm(props) {
   const [showPassword, setShowPassword] = useState(false);
+  const [load, setLoad] = useState(false)
 
   const { email, setEmail, password, setPassword, submitHandler, loading } =
     props;
@@ -61,18 +62,23 @@ function AuthForm(props) {
     
     signInWithPopup(auth, provider)
   .then((result) => {
+    setLoad(true)
     const user = result.user;
     toast.success("Login successFul")
     navigate('/')
     dispatch(isLoggedIn(true))
+    setLoad(false)
   }).catch((error) => {
+    setLoad(true)
    toast.error(error.message)
+   setLoad(false)
   });   
   }
 
   return (
     <>
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
+      <Loader  open={load}/>
       <div className="mt" style={{ marginTop: "120px" }}>
         <Paper style={styles.paper}>
           <Box sx={{ display: "flex", justifyContent: "center" }}>

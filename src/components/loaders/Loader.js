@@ -1,14 +1,13 @@
-import React from 'react'
-import '../../App.css'
+import React from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
-function Loader() {
-    
+const Loader = ({ open }) => {
   return (
-   <>
-   <span className="loader"></span>
-    <div className='loadingText'>Loading...</div>
-   </>
-  )
-}
+    <Backdrop open={open}>
+      <CircularProgress color="inherit" />
+    </Backdrop>
+  );
+};
 
-export default Loader
+export default Loader;
