@@ -22,7 +22,6 @@ function Login() {
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-         const user = userCredential.user;
          dispatch(isLoggedIn(true))
          console.log("user");
          toast.success("Loggedin Successfully")

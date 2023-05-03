@@ -24,7 +24,10 @@ function Categories() {
   console.log(category);
 
   useEffect(() => {
+
     async function getData(){
+
+      window.scrollTo(0, window.innerHeight / 1);
       try {
       
         setLoading(true)
