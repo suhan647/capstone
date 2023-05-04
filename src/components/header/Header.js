@@ -22,6 +22,7 @@ import {  useSelector } from "react-redux";
 import ProfileIcon from "../profile/Profile";
 import { toast } from "react-toastify";
 
+
 const drawerWidth = 240;
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -38,9 +39,16 @@ function Header(props) {
   const wishcount = useSelector((state) => state.wishListSlice.list);
   const authenticated = useSelector((state) => state.authentication.user)
 
+
   const cart = () => {
     if(!authenticated){
       toast.error("You need to login To view the cart")
+    }
+  }
+
+  const PreferencePage = () => {
+    if(!authenticated){
+      toast.error("You need to login To view Your preferences")
     }
   }
 
@@ -54,7 +62,7 @@ function Header(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography variant="h6" sx={{ my: 4 }}>
         <img src={shoplogo} height="40px" alt="myntra" />
       </Typography>
       <Divider />
@@ -86,6 +94,19 @@ function Header(props) {
             Women
             </NavLink>
         </ListItem>
+
+
+        <ListItem >
+        <NavLink
+            to="/preference"
+            className="link link_container"
+            activeclassname ="action"
+          >
+            Preferences
+            </NavLink>
+        </ListItem>
+
+
         <ListItem >
         <NavLink
             to="/categories/laptops"
@@ -143,7 +164,7 @@ function Header(props) {
                 <img src={shoplogo} height="70px" alt="myntra" />
               </Grid>
 
-              <Grid item xs={1} sx={{ marginLeft: "10px" }}>
+              <Grid item xs={1.5} sx={{ marginLeft: "10px" }}>
                 <Box className="link_container , dis">
                   <NavLink to="/" className="link" activeclassname ="active">
                     Home
@@ -151,7 +172,7 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid item xs={1}>
+              <Grid item xs={1.5}>
                 <Box className="link_container , dis" >
                 <NavLink
             to="/categories/mens-shirts" 
@@ -162,7 +183,7 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid item xs={2}>
+              <Grid item xs={1.5}>
                 <Box className="link_container , dis">
                 <NavLink
             to="/categories/womens-dresses"
@@ -174,7 +195,20 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid item xs={3}>
+              <Grid item xs={1.5}>
+                <Box className="link_container , dis" onClick={PreferencePage}>
+                <NavLink
+            to="/preference"
+            className="link link_container"
+            activeclassname ="action"
+          >
+                    Preference
+                    </NavLink>
+                </Box>
+              </Grid>
+            
+
+              <Grid item xs={1.5}>
                 <Box className="link_container , dis">
                 <NavLink
             to="/categories/laptops"
@@ -189,7 +223,7 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid className="searchbar" item xs={3}>
+              <Grid className="searchbar" item xs={2.5}>
                 <span
                   style={{
                     display: "flex",
@@ -210,7 +244,7 @@ function Header(props) {
             </Grid>
           </Box>
 
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
 
             <Box
               className="icons_container"
@@ -274,6 +308,7 @@ function Header(props) {
         </Toolbar>
       </AppBar>
       <Box component="nav">
+        
         <Drawer
           container={container}
           variant="temporary"
@@ -283,7 +318,7 @@ function Header(props) {
             keepMounted: true, 
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "block", md:'block', lg:"none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

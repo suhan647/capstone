@@ -8,6 +8,7 @@ import Categories from '../components/categories/Categories'
 import Register from '../auth/Register'
 import Login from '../auth/Login'
 import { useSelector } from 'react-redux'
+import Preference from '../components/preferences/Preference'
 
 
 
@@ -34,6 +35,9 @@ function Routing() {
         <Route path='/categories/:name' element={<Categories />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/preference' element={<PrivateRoute loggedin={authenticated}><Preference /></PrivateRoute>}></Route>
+        <Route path='/preference/:categoryname' element={<Preference />}></Route>
+
         
     </Routes>
     </>

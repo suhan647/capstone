@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isLoggedIn } from '../redux/slices/AuthSlice';
 import Loader from '../components/loaders/Loader';
+import {selectedpreferences } from '../redux/slices/PreferenceSlice';
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [preferences, setPreferences] = useState([]);
 
     const navigate= useNavigate()
     const dispatch = useDispatch()
@@ -22,11 +24,13 @@ function Login() {
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+
          dispatch(isLoggedIn(true))
          console.log("user");
          toast.success("Loggedin Successfully")
          setLoading(false)
          navigate('/')
+        //  dispatch(selectedpreferences(preferences))
          dispatch(isLoggedIn(true))
       })
         .catch((error) => {
@@ -47,6 +51,8 @@ function Login() {
            setPassword={setPassword}
            submitHandler={submitHandler}
            loading={loading}
+           preferences={preferences}
+           setPreferences={setPreferences}
            />
 
       </div>
