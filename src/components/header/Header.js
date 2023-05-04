@@ -18,10 +18,10 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { reusability } from "../../redux/slices/ProductSlice";
+import {  useSelector } from "react-redux";
 import ProfileIcon from "../profile/Profile";
 import { toast } from "react-toastify";
+
 
 const drawerWidth = 240;
 
@@ -37,8 +37,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
-  const dispatch = useDispatch()
   const authenticated = useSelector((state) => state.authentication.user)
+
 
   const cart = () => {
     if(!authenticated){
@@ -46,21 +46,12 @@ function Header(props) {
     }
   }
 
-  const Mens = () => {
-   dispatch(reusability("mens-shirts"))
+  const PreferencePage = () => {
+    if(!authenticated){
+      toast.error("You need to login To view Your preferences")
+    }
   }
 
-  const Womens = () => {
-    dispatch(reusability("womens-dresses"))
-   } 
-
-   const Electronics = () => {
-    dispatch(reusability("laptops"))
-   }
-
-   const Home = () => {
-    dispatch(reusability())
-   }
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -71,12 +62,12 @@ function Header(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography variant="h6" sx={{ my: 4 }}>
         <img src={shoplogo} height="40px" alt="myntra" />
       </Typography>
       <Divider />
       <List>
-        <ListItem  onClick={Home}>
+        <ListItem >
           <NavLink
             to="/"
             className="link link_container"
@@ -85,27 +76,40 @@ function Header(props) {
             Home
           </NavLink>
         </ListItem>
-        <ListItem onClick={Mens}>
+        <ListItem >
         <NavLink
-            to="categories"
+            to="categories/mens-shirts"
             className="link link_container"
             activeclassname ="action"
           >
             Men
             </NavLink>
         </ListItem>
-        <ListItem onClick={Womens}>
+        <ListItem >
         <NavLink
-            to="/categories"
+            to="/categories/womens-dresses"
             className="link link_container"
             activeclassname ="action"
           >
             Women
             </NavLink>
         </ListItem>
-        <ListItem onClick={Electronics}>
+
+
+        <ListItem >
         <NavLink
-            to="/categories"
+            to="/preference"
+            className="link link_container"
+            activeclassname ="action"
+          >
+            Preferences
+            </NavLink>
+        </ListItem>
+
+
+        <ListItem >
+        <NavLink
+            to="/categories/laptops"
             className="link link_container"
             activeclassname ="action"
           >
@@ -160,18 +164,18 @@ function Header(props) {
                 <img src={shoplogo} height="70px" alt="myntra" />
               </Grid>
 
-              <Grid item xs={1} sx={{ marginLeft: "10px" }}>
-                <Box className="link_container , dis" onClick={Home}>
+              <Grid item xs={1.5} sx={{ marginLeft: "10px" }}>
+                <Box className="link_container , dis">
                   <NavLink to="/" className="link" activeclassname ="active">
                     Home
                   </NavLink>
                 </Box>
               </Grid>
 
-              <Grid item xs={1}>
-                <Box className="link_container , dis" onClick={Mens}>
+              <Grid item xs={1.5}>
+                <Box className="link_container , dis" >
                 <NavLink
-            to="/categories" 
+            to="/categories/mens-shirts" 
             className="link link_container"
             activeclassname ="action">
                     Men
@@ -179,10 +183,10 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid item xs={2}>
-                <Box className="link_container , dis" onClick={Womens}>
+              <Grid item xs={1.5}>
+                <Box className="link_container , dis">
                 <NavLink
-            to="/categories"
+            to="/categories/womens-dresses"
             className="link link_container"
             activeclassname ="action"
           >
@@ -191,10 +195,23 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid item xs={3}>
-                <Box className="link_container , dis" onClick={Electronics}>
+              <Grid item xs={1.5}>
+                <Box className="link_container , dis" onClick={PreferencePage}>
                 <NavLink
-            to="/categories"
+            to="/preference"
+            className="link link_container"
+            activeclassname ="action"
+          >
+                    Preference
+                    </NavLink>
+                </Box>
+              </Grid>
+            
+
+              <Grid item xs={1.5}>
+                <Box className="link_container , dis">
+                <NavLink
+            to="/categories/laptops"
             className="link link_container"
             activeclassname ="action"
           >
@@ -206,7 +223,7 @@ function Header(props) {
                 </Box>
               </Grid>
 
-              <Grid className="searchbar" item xs={3}>
+              <Grid className="searchbar" item xs={2.5}>
                 <span
                   style={{
                     display: "flex",
@@ -227,7 +244,7 @@ function Header(props) {
             </Grid>
           </Box>
 
-          <Grid item xs={2}>
+          <Grid item xs={1.5}>
 
             <Box
               className="icons_container"
@@ -291,6 +308,7 @@ function Header(props) {
         </Toolbar>
       </AppBar>
       <Box component="nav">
+        
         <Drawer
           container={container}
           variant="temporary"
@@ -300,7 +318,7 @@ function Header(props) {
             keepMounted: true, 
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "block", md:'block', lg:"none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

@@ -8,9 +8,9 @@ import Categories from '../components/categories/Categories'
 import Register from '../auth/Register'
 import Login from '../auth/Login'
 import { useSelector } from 'react-redux'
+import Preference from '../components/preferences/Preference'
 
 
-// const navigate= useNavigate()
 
 function PrivateRoute({loggedin, children}){
   if(loggedin){
@@ -28,20 +28,16 @@ function Routing() {
     <>
     <Routes>
     
-        <Route path="/" element={<Home />}></Route>
+        <Route index path="/" element={<Home />}></Route>
         <Route path="/wishlist" element={<WishList />}></Route>
         <Route path="/productdetails/:id" element={<ProductDetails/>} ></Route>
         <Route path="/cart" element={ <PrivateRoute loggedin={authenticated}><Cart /> </PrivateRoute>}></Route>
-        <Route path='/categories' element={<Categories />}></Route>
+        <Route path='/categories/:name' element={<Categories />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/preference' element={<PrivateRoute loggedin={authenticated}><Preference /></PrivateRoute>}></Route>
+        <Route path='/preference/:categoryname' element={<Preference />}></Route>
 
-
-        {/* <Route path='/watchlist' element={
-      <PrivateRoute loggedin={authenticated}>
-        <WatchList />
-        </PrivateRoute>} /> */}
-    
         
     </Routes>
     </>

@@ -1,7 +1,6 @@
 import { Button, Grid, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { reusability } from '../../redux/slices/ProductSlice';
+import { Link } from 'react-router-dom';
+
 const bannerStyles = {
   banner: {
     backgroundColor: '#f8f8f8',
@@ -65,15 +64,9 @@ const CategoryBanner = ({ title, subtitle, imageUrl, buttonText, xs, md, justify
 };
 
 const WomensProductsBanner = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
-
-  const handleShopNow = () => {
-    navigate("/categories");
-    dispatch(reusability("womens-jewellery"))
-  };
   
   return (
+    <Link style={{textDecoration: 'none'}} to='/categories/womens-jewellery'>
     <CategoryBanner
       title="Women's Collection"
       subtitle="Shop our collection of Women's Jewellery and accessories."
@@ -82,22 +75,15 @@ const WomensProductsBanner = () => {
       xs={12} md={6}
       justifyContent="center"
       alignItems="center"
-      onClick={handleShopNow}
-      
     />
+    </Link>
   );
 };
 
 const MenProductsBanner = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
-
-  const handleShopNow = () => {
-    navigate('/categories');
-    dispatch(reusability("mens-watches"))
-  };
 
   return (
+    <Link style={{textDecoration: 'none'}} to='/categories/mens-watches'>
     <CategoryBanner
       title="Men's Collection"
       subtitle="Shop our collection of men's accessories."
@@ -105,23 +91,17 @@ const MenProductsBanner = () => {
       xs={12} md={6}
       justifyContent="center"
       alignItems="center"
-      onClick={handleShopNow}
       imageUrl="https://img.freepik.com/premium-photo/luxury-men-s-watch-with-cufflinks-breastplate-sunglasses-close-up_427248-563.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais"
      />
+     </Link>
   );
 };
 
 
 const ElectronicsBanner = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
-   
-  const handleShopNow = () => {
-    navigate('/categories');
-    dispatch(reusability("automotive"))
-    
-  };
+
   return (
+    <Link style={{textDecoration: 'none'}} to='/categories/automotive'>
     <CategoryBanner
       title="Electronics & Accessories"
       subtitle="Shop our collection of Laptops and Smartphones."
@@ -130,8 +110,8 @@ const ElectronicsBanner = () => {
       xs={12} md={6}
       justifyContent="center"
       alignItems="center"
-      onClick={handleShopNow}
      />
+     </Link>
   );
 };
 

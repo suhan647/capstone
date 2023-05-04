@@ -2,9 +2,7 @@ import { Avatar, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import Carousal from "../carousal/Carousal";
 import Tooltip from "@mui/material/Tooltip";
-import { useDispatch } from "react-redux";
-import { reusability } from "../../redux/slices/ProductSlice";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 import { Grid } from "@mui/material";
 import {
@@ -80,30 +78,6 @@ const newArrivals = [
 ];
 
 function Home() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const Phones = () => {
-    dispatch(reusability("smartphones"));
-    navigate("/categories");
-  };
-  const Laptops = () => {
-    dispatch(reusability("laptops"));
-    navigate("/categories");
-  };
-  const Mens = () => {
-    dispatch(reusability("mens"));
-    navigate("/categories");
-  };
-  const Womens = () => {
-    dispatch(reusability("womens"));
-    navigate("/categories");
-  };
-  const Shoes = () => {
-    dispatch(reusability("shoes"));
-    navigate("/categories");
-  };
-
   return (
     <>
       <Box>
@@ -135,54 +109,35 @@ function Home() {
             backgroundColor: "yellow",
           }}
         >
-          <Tooltip title="Phones">
-            <Avatar
-              className="hoverzoom"
-              onClick={Phones}
-              alt="phones"
-              src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-              sx={{ height: "120px", width: "120px" }}
-            />
-          </Tooltip>
+         <Tooltip title="Phones">
+    <Link to='/categories/smartphones'>
+      <Avatar className='hoverzoom' alt="phones" src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>  
+      </Tooltip>
 
-          <Tooltip title="Laptops">
-            <Avatar
-              className="hoverzoom"
-              onClick={Laptops}
-              alt="laptops"
-              src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFwdG9wc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-              sx={{ height: "120px", width: "120px" }}
-            />
-          </Tooltip>
-          <Tooltip title="Mens">
-            <Avatar
-              className="hoverzoom"
-              onClick={Mens}
-              alt="mens-shoes"
-              src="https://img.freepik.com/free-photo/alternative-man-tying-boots-shoelaces-floor_53876-101248.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais"
-              sx={{ height: "120px", width: "120px" }}
-            />
-          </Tooltip>
+      <Tooltip title="Laptops">
+      <Link to='/categories/laptops'>
+      <Avatar className='hoverzoom'  alt="laptops" src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFwdG9wc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
+      </Tooltip>
 
-          <Tooltip title="Womens">
-            <Avatar
-              className="hoverzoom"
-              onClick={Womens}
-              alt="womens"
-              src="https://images.unsplash.com/photo-1552874869-5c39ec9288dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW5zJTIwZmFzaGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-              sx={{ height: "120px", width: "120px" }}
-            />
-          </Tooltip>
+      <Tooltip title="Mens">
+      <Link to='/categories/mens-shoes'>
+      <Avatar className='hoverzoom'  alt="mens-shoes" src="https://img.freepik.com/free-photo/alternative-man-tying-boots-shoelaces-floor_53876-101248.jpg?size=626&ext=jpg&ga=GA1.1.91273752.1682885983&semt=ais" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
+      </Tooltip>
 
-          <Tooltip title="Shoes">
-            <Avatar
-              className="hoverzoom"
-              onClick={Shoes}
-              alt="shoes"
-              src="https://plus.unsplash.com/premium_photo-1669644856868-6613f6683346?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2hvZXMlMjBmYXNoaW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              sx={{ height: "120px", width: "120px" }}
-            />
-          </Tooltip>
+      <Tooltip title="Womens">
+      <Link to='/categories/tops'>
+      <Avatar className='hoverzoom'   alt="tops" src="https://images.unsplash.com/photo-1552874869-5c39ec9288dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW5zJTIwZmFzaGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
+      </Tooltip>
+
+      <Tooltip title="Shoes">
+      <Link to='/categories/womens-shoes'>
+      <Avatar className='hoverzoom'  alt="womens-shoes" src="https://plus.unsplash.com/premium_photo-1669644856868-6613f6683346?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2hvZXMlMjBmYXNoaW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" sx={{ height: '120px', width: '120px' }}/>
+      </Link>
+      </Tooltip>
         </Stack>
       </Box>
 
