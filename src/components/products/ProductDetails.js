@@ -31,18 +31,18 @@ const Form = styled("div")({
 });
 
 const StyledRating = styled(Rating)({
-  marginTop: "16px",
+  marginTop: "10px",
 });
 
 const ReviewTextField = styled(TextField)({
-  marginTop: "16px",
-  width: "100%",
+  marginTop: "10px",
+  width: "50%",
 });
 
 function ProductDetails() {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
-  const [reviewsList, setReviewsList] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const handleRatingChange = (event, value) => {
     setRating(value);
@@ -55,14 +55,10 @@ function ProductDetails() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const newReview = {
-      rating: rating,
-      review: review,
-    };
-
+    const newReview = { rating, review };
+    setReviews([...reviews, newReview]);
     setRating(0);
     setReview("");
-    setReviewsList([...reviewsList, newReview]);
   };
 
   const [singleData, setSingleData] = useState([]);
@@ -70,7 +66,6 @@ function ProductDetails() {
   const [multiImage, setMultiImage] = useState([]);
 
   const { id } = useParams();
-
   const dispatch = useDispatch();
 
   async function productData(id) {
@@ -213,19 +208,19 @@ function ProductDetails() {
               Submit
             </Button>
           </Form>
-          {reviewsList.length > 0 ? (
-            <div>
-              <Typography variant="h6">Reviews</Typography>
-              {reviewsList.map((review, index) => (
-                <div key={index}>
-                  <Typography variant="subtitle1">
-                    Rating: {review.rating}
-                  </Typography>
-                  <Typography variant="body1">
-                    Review: {review.review}
-                  </Typography>
+
+          {reviews.length > 0 ? (
+            <div className="root">
+              <div className="form">
+                <div className="reviews">
+                  {reviews.map((r, index) => (
+                    <div key={index} className="review">
+                      <Rating name="product-rating" value={r.rating} readOnly />
+                      <Typography variant="body1">{r.review}</Typography>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           ) : (
             <Typography variant="h6">No reviews yet.</Typography>
