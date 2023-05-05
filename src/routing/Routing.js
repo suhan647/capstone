@@ -9,6 +9,7 @@ import Register from '../auth/Register'
 import Login from '../auth/Login'
 import { useSelector } from 'react-redux'
 import Preference from '../components/preferences/Preference'
+import Order from '../components/orderPage/Order'
 
 
 
@@ -37,7 +38,7 @@ function Routing() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/preference' element={<PrivateRoute loggedin={authenticated}><Preference /></PrivateRoute>}></Route>
         <Route path='/preference/:categoryname' element={<Preference />}></Route>
-
+        <Route path='/order' element={<Order/>}></Route>
         
     </Routes>
     </>
