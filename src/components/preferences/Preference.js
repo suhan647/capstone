@@ -70,6 +70,8 @@ const PreferencePage = () => {
         getPreferences()
       },[preferences])
 
+
+      
     
     return (
         <Box sx={{ mt: "100px" }}>
