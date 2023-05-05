@@ -360,6 +360,7 @@ function AuthForm(props) {
                 <InputLabel htmlFor="preferences">Preferences</InputLabel>
                 <Select
                   id="preferences"
+                  required
                   multiple
                   value={preferences}
                   onChange={(e) => handlePreferencesChange(e)}
@@ -380,8 +381,6 @@ function AuthForm(props) {
                " "
               
               }
-
-              
 
               <Grid item xs={12}>
                 <Button

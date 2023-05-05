@@ -38,7 +38,7 @@ function Routing() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/preference' element={<PrivateRoute loggedin={authenticated}><Preference /></PrivateRoute>}></Route>
         <Route path='/preference/:categoryname' element={<Preference />}></Route>
-        <Route path='/order' element={<Order/>}></Route>
+        <Route path='/order' element={<PrivateRoute loggedin={authenticated}><Order/></PrivateRoute>}></Route>
         
     </Routes>
     </>
