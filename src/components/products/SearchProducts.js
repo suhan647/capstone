@@ -6,13 +6,13 @@ import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch, useSelector } from 'react-redux'
 import { productItems } from '../../redux/slices/ProductSlice'
 import { addItem } from '../../redux/slices/CartSlice'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Loader from '../loaders/Loader'
 import { addToWishList } from '../../redux/slices/WishlistSlice'
 import apiService from '../../services/apiService'
 import { AddShoppingCart, Favorite } from '@mui/icons-material';
 
-function Categories() {
+function SearchProducts() {
 
   const [products,setProducts] = useState([])
   const [loading, setLoading] = useState(false)
@@ -22,33 +22,29 @@ function Categories() {
   const category = useParams()
   const search = useSelector((state)=> state.search.searchData)
 
-  async function getData() {
-    window.scrollTo(0, window.innerHeight / 1);
-    try {
-      setLoading(true);
-      let data;
-      if (category) {
-        data = await apiService.get(`/products/category/${category.name}`);
-      } else if (search) {
-        data = await apiService.get(`/products/search?q=${search}`);
-        console.log(data);
-        
-      } else {
-        data = await apiService.get(`/products`);
-      }
-      setProducts(data.data.products);
-      dispatch(productItems(data));
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  }
-  
+  // console.log("params",category.name);
+
   useEffect(() => {
-    getData();
-  }, [category, dispatch, search]);
-  
+
+    async function getData(){
+
+      window.scrollTo(0, window.innerHeight / 1);
+      try {
+      
+        setLoading(true)
+        let data = category ? await apiService.get(`/products/category/${category.name}`) : ''
+        setProducts(data.data.products)
+     dispatch(productItems(data))
+     setLoading(false)
+
+      } catch (error) {
+        setLoading(true)
+        console.log(error);
+        setLoading(false)
+      }
+    }
+    getData()
+  },[category, dispatch])
 
 
   const HandleAddToCart = (items) =>{
@@ -187,4 +183,4 @@ function Categories() {
   )
 }
 
-export default Categories
+export default SearchProducts

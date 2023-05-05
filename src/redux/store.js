@@ -4,6 +4,7 @@ import CartSlice from './slices/CartSlice'
 import  wishSlice  from './slices/WishlistSlice'
 import { reducer as authenticationReducer } from './slices/AuthSlice';
 import  PreferenceSLice  from './slices/PreferenceSlice';
+import SearchSlice from './slices/SearchSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     CartSlice: CartSlice,
     wishListSlice : wishSlice,
     authentication : authenticationReducer,
-    preference : PreferenceSLice
+    preference : PreferenceSLice,
+    search : SearchSlice
   }, 
 })

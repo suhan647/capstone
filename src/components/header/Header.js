@@ -17,10 +17,11 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import { NavLink } from "react-router-dom";
-import {  useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import {  useDispatch, useSelector } from "react-redux";
 import ProfileIcon from "../profile/Profile";
 import { toast } from "react-toastify";
+import  {searchproducts} from '../../redux/slices/SearchSlice'
 
 
 const drawerWidth = 240;
@@ -38,8 +39,21 @@ function Header(props) {
   const cartCount = useSelector((state) => state.CartSlice.items);
   const wishcount = useSelector((state) => state.wishListSlice.list);
   const authenticated = useSelector((state) => state.authentication.user)
+  const dispatch = useDispatch()
 
+  const [search, setSearch] = React.useState([])
+ const navigate = useNavigate()
+ 
+const SearchHandler = () => {
+  console.log("search", search);
+  dispatch(searchproducts(search))
+  let s=search ?  navigate(`categories/${search}`) : ""
+}
 
+React.useEffect(() => {
+
+},[dispatch])
+  
   const cart = () => {
     if(!authenticated){
       toast.error("You need to login To view the cart")
@@ -233,11 +247,12 @@ function Header(props) {
                     padding: "6px",
                   }}
                 >
-                  <SearchIcon sx={{ paddingLeft: "2px" }} />
+                  <SearchIcon sx={{ paddingLeft: "2px" }} onClick={SearchHandler} />
                   <input
                     className="textbox"
                     type="text"
                     placeholder="search for products..."
+                    onChange={(e) => {setSearch(e.target.value)}}
                   />
                 </span>
               </Grid>
