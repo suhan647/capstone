@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import {  useDispatch, useSelector } from 'react-redux';
 import { isLoggedIn } from '../../redux/slices/AuthSlice';
 import { Box } from '@mui/system';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 
 const profileIconStyles = {
@@ -115,6 +116,32 @@ const ProfileIcon = () => {
           :
           " "
           }
+
+
+    {authenticated ? 
+         <NavLink to='/order' sx={{ textDecoration: 'none' }}>
+          <MenuItem
+            onClick={handleClose}
+            sx={{
+              color: "#333",
+              fontWeight: "bold",
+              padding: "20px",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+              },
+              textDecoration: 'none', 
+            }}
+          >
+            <ListItemIcon>
+              <LocalMallIcon fontSize="small" />
+            </ListItemIcon>
+            My orders
+          </MenuItem>
+        </NavLink>
+           :
+          " "
+          } 
+
 
         <Box  onClick={logoutUser}>
         <MenuItem
