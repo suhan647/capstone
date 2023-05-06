@@ -5,6 +5,7 @@ import  wishSlice  from './slices/WishlistSlice'
 import { reducer as authenticationReducer } from './slices/AuthSlice';
 import  PreferenceSLice  from './slices/PreferenceSlice';
 import SearchSlice from './slices/SearchSlice';
+import OrderSlice from './slices/OrderSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     wishListSlice : wishSlice,
     authentication : authenticationReducer,
     preference : PreferenceSLice,
-    search : SearchSlice
+    search : SearchSlice,
+    orders : OrderSlice
   }, 
 })

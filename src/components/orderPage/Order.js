@@ -1,42 +1,23 @@
 import React, { useState } from "react";
 import { Paper, Typography, Box, IconButton } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 function Order() {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "iPhone X",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxyiJNZinS3zGV2NaPHN-v3l5HyTYI0ptfTwyZz0Ici6WE28O93VSlR1KVTuv0t1546fSiROiXZns&usqp=CAU0&ec=48665699",
-      quantity: 1,
-      price: "$899",
-    },
-    {
-      id: 2,
-      name: "Chain Pin Tassel Earrings",
-      image: "https://i.dummyjson.com/data/products/80/3.png",
-      quantity: 3,
-      price: "$45",
-    },
-    {
-      id: 3,
-      name: "printed high quality T shirts",
-      image: "https://i.dummyjson.com/data/products/53/2.jpg",
-      quantity: 5,
-      price: "$35",
-    },
-  ]);
+  const orders = useSelector((state) => state.orders.orderlist);
+
+  console.log(orders);
 
   return (
     <div>
-      <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "50px" }}>My Order</Typography>
-      {items.map((item) => (
+      {orders ? <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>My Order</Typography>  : <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>You Have not ordered anything yet </Typography>}
+      {/* <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>My Order</Typography> */}
+      {orders.map((item) => (
         <Paper
           className="paper-order"
           key={item.id}
           sx={{
-            marginTop: "80px",
+            marginTop: "40px",
             display: "flex",
             justifyContent: "space-between",
           }}
@@ -49,23 +30,27 @@ function Order() {
             padding="8px"
             sx={{ flexGrow: 1 }}
           >
-            <Box sx={{ display:"flex",flex: 1,  alignItems:"center" }}>
+            <Box sx={{ display: "flex", flex: 1, alignItems: "center" }}>
               <img
                 className="order-img"
-                src={item.image}
+                src={item.thumbnail}
                 alt="Product"
-                style={{ maxWidth: "20%", height: "auto"}}
+                style={{ maxWidth: "20%", height: "auto" }}
               />
               <Typography
                 variant="subtitle1"
                 component="h3"
-                
-                style={{ fontWeight: "bold", fontSize:"24px", color: "#333", marginLeft: "20px" }}
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  color: "#333",
+                  marginLeft: "20px",
+                }}
               >
-                {item.name}
+                {item.title}
               </Typography>
             </Box>
-            <Box  sx={{display:"flex", flex: 1, alignItems:"center" }}>
+            <Box sx={{ display: "flex", flex: 1, alignItems: "center" }}>
               <Typography
                 variant="subtitle1"
                 style={{
@@ -75,17 +60,19 @@ function Order() {
                   marginRight: "120px",
                 }}
               >
-                Price: {item.price}
+                Price: ${item.price}
               </Typography>
               <IconButton
                 className="shopping-button"
                 style={{
                   padding: "6px",
-                  borderRadius: "50%",
-                  backgroundColor: "#ff8f00",
-                  color: "white",
+                  // borderRadius: "50%",
+                  // backgroundColor: "#ff8f00",
+
+                  color: "green",
                   marginLeft: "150px",
                 }}
+                onClick={() => alert("Order Placed")}
               >
                 <ShoppingCartIcon fontSize="small" />
                 <Typography
@@ -95,9 +82,10 @@ function Order() {
                     color: "white",
                     fontWeight: "bold",
                     flex: 1,
+                    color:'green'
                   }}
                 >
-                  Qty: {item.quantity}
+                  Order Placed
                 </Typography>
               </IconButton>
             </Box>
