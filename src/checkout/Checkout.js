@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetCart } from "../redux/slices/CartSlice";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import { addtoOrders } from "../redux/slices/OrderSlice";
 
 const Checkout = (props) => {
   const dispatch = useDispatch();
   const [paymentComplete, setPaymentComplete] = useState(false);
 
+  const ordersData = useSelector((state) => state.CartSlice.items)
+
+
   const handleToken = (token) => {
-    console.log(token);
+    console.log(token)
     setPaymentComplete(true);
+    dispatch(addtoOrders(ordersData))
   };
 
   const handleClose = () => {

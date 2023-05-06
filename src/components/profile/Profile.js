@@ -11,6 +11,7 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { isLoggedIn } from '../../redux/slices/AuthSlice';
 import { Box } from '@mui/system';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import { resetOrder } from '../../redux/slices/OrderSlice';
 
 
 const profileIconStyles = {
@@ -44,6 +45,7 @@ const ProfileIcon = () => {
       navigate('/')
       dispatch(isLoggedIn(false))
       toast.success("Logout successfully")
+      dispatch(resetOrder())
       console.log("auth", auth);
     }).catch((error) => {
       toast.error(error.message)
