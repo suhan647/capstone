@@ -50,9 +50,8 @@ function Categories() {
   }, [category, dispatch, search]);
   
 
-
   const HandleAddToCart = (items) =>{
-   dispatch(addItem(items))
+   dispatch(addItem(items)) 
    console.log(items);
   }
  
