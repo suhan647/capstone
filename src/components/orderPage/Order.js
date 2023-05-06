@@ -10,8 +10,7 @@ function Order() {
 
   return (
     <div>
-      {orders ? <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>My Order</Typography>  : <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>You Have not ordered anything yet </Typography>}
-      {/* <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>My Order</Typography> */}
+      {orders.length > 0 ? <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",}}>My Order</Typography>  : <Typography variant="h4" component="h1" sx={{ fontWeight: "bold", marginBottom: "10px" , marginTop: "100px",display:'flex', justifyContent:'center'}}>You Have not ordered anything yet </Typography>}
       {orders.map((item) => (
         <Paper
           className="paper-order"
