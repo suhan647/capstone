@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import apiService from "../../services/apiService";
 import {  Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from "@mui/material";
 import { toast } from "react-toastify";
@@ -174,6 +174,7 @@ const PreferencePage = () => {
               sx={{ height: "100%" }}
             >
               <Card sx={{ height: "100%" }}>
+                <NavLink to={`/productdetails/${product.id}`}>
                 <CardMedia
                   component="img"
                   height="200"
@@ -185,6 +186,7 @@ const PreferencePage = () => {
                     height: "400px",
                   }}
                 />
+                </NavLink>
                 <CardContent>
                   <Typography variant="subtitle1" sx={{ mb: 1 }}>
                     {product.title}
@@ -204,14 +206,6 @@ const PreferencePage = () => {
                         {product.rating.toFixed(2)} ({product.stock} in stock)
                       </Typography>
                     </Box>
-                                    <Box sx={{ mt: 2 }}>
-                                        <Button variant="contained" color="primary">
-                                            Add to Cart
-                                        </Button>
-                                        <Typography variant="subtitle2" sx={{ mt: 1 }}>
-                                            {product.discountPercentage.toFixed(2)}% off
-                                        </Typography>
-                                    </Box>
                                 </CardContent>
                             </Card>
                         </Grid>
