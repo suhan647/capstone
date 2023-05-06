@@ -24,7 +24,7 @@ import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { auth } from "../firebase/Config";
 import { toast } from "react-toastify";
 import { isLoggedIn } from "../redux/slices/AuthSlice";
-import {selectedpreferences } from '../redux/slices/PreferenceSlice';
+// import {selectedpreferences } from '../redux/slices/PreferenceSlice';
 import { useDispatch } from "react-redux";
 import apiService from "../services/apiService";
 
@@ -46,14 +46,12 @@ const styles = {
 function AuthForm(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [load, setLoad] = useState(false);
-  // const [preferences, setPreferences] = useState([]);
   const [preferencesList, setPreferencesList] = useState([])
 
   const getPreferences = async() => {
     try {
       let data = await apiService.get('/products/categories')
       setPreferencesList(data.data)
-      // console.log('data', data.data);
      } catch (error) {
       toast.error(error)
       console.log(error);
@@ -81,7 +79,6 @@ function AuthForm(props) {
 
   useEffect(() => {
     getPreferences()
-    // dispatch(selectedpreferences(preferences))
    },[preferences])
 
   const provider = new GoogleAuthProvider();
@@ -190,7 +187,6 @@ function AuthForm(props) {
             </Grid>
                :
                " "
-              
               }
 
               <Grid item xs={12}>

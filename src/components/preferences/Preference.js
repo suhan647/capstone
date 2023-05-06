@@ -40,6 +40,7 @@ const PreferencePage = () => {
                 let data = await apiService.get(`/products/category/${params.categoryname}`);
                 setDisplay(data.data.products);
                 setIsLoading(false);
+               
             } catch (error) {
                 console.error(error);
                 setIsLoading(false);
@@ -48,7 +49,8 @@ const PreferencePage = () => {
         fetchData();
     }, [params.categoryname]);
 
-   
+    console.log(isLoading);
+
     const getPreferences = async() => {
         try {
           let data = await apiService.get('/products/categories')

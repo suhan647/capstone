@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import "../../App.css";
 import StarIcon from "@mui/icons-material/Star";
-import { Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { addItem } from "../../redux/slices/CartSlice";
 import apiService from "../../services/apiService";
 
@@ -14,11 +14,12 @@ import TextField from "@mui/material/TextField";
 import Rating from "@mui/material/Rating";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
+import { deepPurple } from "@mui/material/colors";
 
 const Root = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+  gap: "16px",
   padding: "16px",
 });
 
@@ -27,7 +28,6 @@ const Form = styled("div")({
   flexDirection: "column",
   alignItems: "center",
   margin: "16px",
-  width: "100%",
 });
 
 const StyledRating = styled(Rating)({
@@ -36,13 +36,20 @@ const StyledRating = styled(Rating)({
 
 const ReviewTextField = styled(TextField)({
   marginTop: "10px",
-  width: "50%",
+  width: "100%",
 });
 
+
+
 function ProductDetails() {
+ 
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const [reviews, setReviews] = useState([]);
+
+  const [singleData, setSingleData] = useState([]);
+  const [images, setImages] = useState([]);
+  const [multiImage, setMultiImage] = useState([]);
 
   const handleRatingChange = (event, value) => {
     setRating(value);
@@ -60,10 +67,6 @@ function ProductDetails() {
     setRating(0);
     setReview("");
   };
-
-  const [singleData, setSingleData] = useState([]);
-  const [images, setImages] = useState([]);
-  const [multiImage, setMultiImage] = useState([]);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -181,51 +184,56 @@ function ProductDetails() {
           </Box>
         </Box>
 
-        <Root>
-          <Form>
-            <Typography variant="h5">Write a Review</Typography>
-            <Stack direction="row" spacing={2} alignItems="center">
-              <StyledRating
-                name="product-rating"
-                value={rating}
-                onChange={handleRatingChange}
-              />
-            </Stack>
-            <ReviewTextField
-              label="Write a review"
-              multiline
-              rows={4}
-              variant="outlined"
-              value={review}
-              onChange={handleReviewChange}
-            />
+<Root>
+    <Form>
+      <Typography variant="h5">Write a Review</Typography>
+      <Stack direction="row" spacing={2} alignItems="center">
+        <StyledRating
+          name="product-rating"
+          value={rating}
+          onChange={handleRatingChange}
+        />
+      </Stack>
+      <ReviewTextField
+        label="Write a review"
+        multiline
+        rows={4}
+        variant="outlined"
+        value={review}
+        onChange={handleReviewChange}
+      />
 
-            <Button
-              variant="contained"
-              sx={{ mt: "10px" }}
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </Form>
+      <Button
+        variant="contained"
+        sx={{ mt: "10px" }}
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+    </Form>
 
-          {reviews.length > 0 ? (
-            <div className="root">
-              <div className="form">
-                <div className="reviews">
-                  {reviews.map((r, index) => (
-                    <div key={index} className="review">
-                      <Rating name="product-rating" value={r.rating} readOnly />
-                      <Typography variant="body1">{r.review}</Typography>
-                    </div>
-                  ))}
-                </div>
+    {reviews.length > 0 ? (
+      <div className="root">
+        <div className="form">
+          <Typography variant="h6" sx={{ mb: 2 }}>Reviews</Typography>
+          <div className="reviews">
+            {reviews.map((r, index) => (
+              <div key={index} className="review">
+                <Stack direction="row" alignItems="center" sx={{ mb: 1 }}>
+                  <Avatar sx={{ bgcolor: deepPurple[500] }}>{r.anonymous ? 'A' : 'U'}</Avatar>
+                  <Typography variant="subtitle1">{r.anonymous ? 'Anonymous' : 'User'}</Typography>
+                </Stack>
+                <Rating name="product-rating" value={r.rating} readOnly />
+                <Typography variant="body1">{r.review}</Typography>
               </div>
-            </div>
-          ) : (
-            <Typography variant="h6">No reviews yet.</Typography>
-          )}
-        </Root>
+            ))}
+          </div>
+        </div>
+      </div>
+    ) : (
+      <Typography variant="h6">No reviews yet.</Typography>
+    )}
+  </Root>
       </Box>
     </>
   );

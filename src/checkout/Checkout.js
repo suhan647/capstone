@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ const Checkout = (props) => {
 
 
   const handleToken = (token) => {
-    console.log(token)
+    console.log(token) 
     setPaymentComplete(true);
     dispatch(addtoOrders(ordersData))
   };
