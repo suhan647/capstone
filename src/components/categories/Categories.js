@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import {  useDispatch, useSelector } from 'react-redux'
 import { productItems } from '../../redux/slices/ProductSlice'
 import { addItem } from '../../redux/slices/CartSlice'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Loader from '../loaders/Loader'
 import { addToWishList } from '../../redux/slices/WishlistSlice'
 import apiService from '../../services/apiService'
