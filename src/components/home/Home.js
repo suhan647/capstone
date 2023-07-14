@@ -149,7 +149,7 @@ function Home() {
               <Avatar
                 alt={brand.name}
                 src={brand.image}
-                sx={{ height: "150px", width: "200px" }}
+                sx={{ height: "50%", width: "50%" }}
               />
             </Grid>
           ))}
